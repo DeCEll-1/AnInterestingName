@@ -15,7 +15,7 @@ namespace AnInterestingWebSiteName.Models
         [StringLength(50)]
         public string Ad { get; set; }
 
-
+        public virtual IEnumerable<Yonetici> Yoneticis { get; set; }
 
 
     }

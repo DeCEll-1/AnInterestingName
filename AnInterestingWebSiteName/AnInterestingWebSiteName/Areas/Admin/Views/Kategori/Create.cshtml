@@ -1,0 +1,45 @@
+﻿@model AnInterestingWebSiteName.Models.Kategori
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/_AdminLayoutPage.cshtml";
+}
+
+<div class="form">
+    <div class="baslik">
+        Kategori Ekle
+        @if (ViewBag.message != null)
+        {
+            <label>@ViewBag.message</label>
+        }
+    </div>
+
+    <div class="objectsItems">
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.Ad):
+                <br />
+                @Html.EditorFor(model => model.Ad)
+                <br />
+                @Html.ValidationMessageFor(model => model.Ad)
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.Aciklama):
+                <br />
+                @Html.EditorFor(model => model.Aciklama)
+                <br />
+                @Html.ValidationMessageFor(model => model.Aciklama)
+            </div>
+
+            <div class="objectsItem">
+                <input type="submit" value="Kategori Ekle" />
+            </div>
+        }
+
+    </div>
+
+</div>

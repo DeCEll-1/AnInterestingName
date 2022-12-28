@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
@@ -11,6 +12,12 @@ namespace AnInterestingWebSiteName.Models
             : base("name=AnInterestingWebSiteName_Model")
         {
         }
+
+        public virtual DbSet<Yonetici> Yoneticis { get; set; }
+
+        public virtual DbSet<YoneticiTur> YoneticiTurs { get; set; }
+
+        public virtual DbSet<Kategori> Kategoris { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

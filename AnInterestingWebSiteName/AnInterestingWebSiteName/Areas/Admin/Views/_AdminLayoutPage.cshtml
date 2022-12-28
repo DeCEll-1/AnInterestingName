@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@Page.Title</title>
+    @RenderSection("head", required: false)
+    <link href="~/Areas/Admin/Assets/CSS/LayoutPageCss.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/CSS/RenkPaleti.css" rel="stylesheet" />
+    <link href="~/Areas/Admin/Assets/CSS/ViewCss.css" rel="stylesheet" />
+</head>
+<body>
+
+    @* Top Bar *@
+    <div class="topBar">
+        
+    </div>
+
+
+    <div class="leftBar">
+        <div class="kullaniciBar">
+            <a href="#">Profil</a>
+            <br />
+            <a href="#">>   Ayarlar</a>
+        </div>
+        <div class="menuBar">
+            <ul>
+                <a href="@Url.Action("Index","Kategori")"><li>Kategori</li></a>
+
+                <a href="@Url.Action("Index","Kategori")"><li>> &nbsp;&nbsp;&nbsp;Kategori Listesi</li></a>
+
+                <a href="@Url.Action("Create","Kategori")"><li>> &nbsp;&nbsp;&nbsp;Kategori Ekle</li></a>
+
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="body">
+        @RenderBody()
+    </div>
+</body>
+</html>

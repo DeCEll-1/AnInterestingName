@@ -1,0 +1,69 @@
+﻿.form {
+    border: 3px solid #2F4F32;
+    width: 800px;
+    min-height: 300px;
+    background-color: #243830;
+}
+
+.baslik {
+    width: 91.25%;
+    height: 15px;
+    background-color: #2F4C4F;
+    color: #7ECBD3;
+    margin: 17.5px;
+    padding: 17.5px;
+}
+
+.baslik label {
+    float:right;
+}
+
+.table {
+    width: 100%;
+    border: 2px solid #2F4C4F;
+    color: #7DC2A6;
+}
+    .table tr {
+        border: 1px solid #2F4C4F;
+    }
+
+        .table tr th {
+            padding: 5px;
+            margin: 2px;
+            border: 1px solid #2F4C4F;
+        }
+
+        .table tr td {
+            border: 1px solid #2F4C4F;
+            padding: 5px;
+            margin: 2px;
+        }
+            .table tr td a {
+                color: #7DC2A6;
+                text-decoration:underline;
+            }
+
+.objectsItems {
+    color: #7DC2A6;
+}
+
+    .objectsItems input[type=text],input[type=submit] {
+        background-color: #293545;
+        border-color: #7ECBD3;
+        color: #8EB7ED;
+        width:100%;
+        min-height:30px;
+    }
+
+    .objectsItems textarea {
+        background-color: #293545;
+        border-color: #7ECBD3;
+        color: #8EB7ED;
+        min-width: 100%;
+        max-width: 100%;
+        min-height: 30px;
+    }
+
+    .objectsItem{
+        margin:20px;
+    }

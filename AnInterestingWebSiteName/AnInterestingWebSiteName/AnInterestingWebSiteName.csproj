@@ -97,22 +97,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Assets\CSS\LayoutPageCss.css" />
+    <Content Include="Areas\Admin\Assets\CSS\RenkPaleti.css" />
+    <Content Include="Areas\Admin\Assets\CSS\ViewCss.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AnaMenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnInterestingWebSiteName_Model.cs" />
+    <Compile Include="Models\Kategori.cs" />
     <Compile Include="Models\Yonetici.cs" />
     <Compile Include="Models\YoneticiTur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_AdminLayoutPage.cshtml" />
+    <Content Include="Areas\Admin\Views\AnaMenu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Kategori\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Kategori\Create.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -123,6 +135,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Controllers\" />
   </ItemGroup>
   <PropertyGroup>

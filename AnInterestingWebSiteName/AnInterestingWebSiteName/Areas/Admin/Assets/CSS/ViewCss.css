@@ -14,15 +14,16 @@
     padding: 17.5px;
 }
 
-.baslik label {
-    float:right;
-}
+    .baslik label {
+        float: right;
+    }
 
 .table {
     width: 100%;
     border: 2px solid #2F4C4F;
     color: #7DC2A6;
 }
+
     .table tr {
         border: 1px solid #2F4C4F;
     }
@@ -38,32 +39,50 @@
             padding: 5px;
             margin: 2px;
         }
+
             .table tr td a {
                 color: #7DC2A6;
-                text-decoration:underline;
+                text-decoration: underline;
             }
 
 .objectsItems {
     color: #7DC2A6;
 }
 
-    .objectsItems input[type=text],input[type=submit] {
+    .objectsItems input[type=text], input[type=submit] {
         background-color: #293545;
         border-color: #7ECBD3;
         color: #8EB7ED;
-        width:100%;
-        min-height:30px;
-    }
-
-    .objectsItems textarea {
-        background-color: #293545;
-        border-color: #7ECBD3;
-        color: #8EB7ED;
-        min-width: 100%;
-        max-width: 100%;
+        width: 100%;
         min-height: 30px;
+        outline: none;
     }
 
-    .objectsItem{
-        margin:20px;
+    .objectsItems input[type=submit]:hover {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#8eb7ed+0,293545+20,293545+80,8eb7ed+100 */
+        background: rgb(142,183,237); /* Old browsers */
+        background: -moz-linear-gradient(45deg, rgba(142,183,237,1) 0%, rgba(41,53,69,1) 20%, rgba(41,53,69,1) 80%, rgba(142,183,237,1) 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(45deg, rgba(142,183,237,1) 0%,rgba(41,53,69,1) 20%,rgba(41,53,69,1) 80%,rgba(142,183,237,1) 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(45deg, rgba(142,183,237,1) 0%,rgba(41,53,69,1) 20%,rgba(41,53,69,1) 80%,rgba(142,183,237,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     }
+
+
+.dropDown {
+    background-color: #293545;
+    border-color: #7ECBD3;
+    color: #8EB7ED;
+}
+
+.objectsItems textarea {
+    background-color: #293545;
+    border-color: #7ECBD3;
+    color: #8EB7ED;
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 30px;
+    outline: none;
+}
+
+.objectsItem {
+    margin: 20px;
+}

@@ -18,7 +18,7 @@
 <div class="form">
     <div class="baslik">
         Kategori Listesi
-        @if (ViewBag.message !=null)
+        @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
         }
@@ -29,7 +29,7 @@
                 <th>@Html.DisplayNameFor(model => model.ID)</th>
                 <th>@Html.DisplayNameFor(model => model.Ad)</th>
                 <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
-                <th >Seçenekler</th>
+                <th>Seçenekler</th>
             </tr>
             @foreach (var item in Model)
             {
@@ -37,9 +37,13 @@
                     <td>@item.ID</td>
                     <td>@item.Ad</td>
                     <td>
-                        @if (item.Aciklama.Length > 50)
+                        @if (item.Aciklama == null || item.Aciklama.Length > 50)
                         {
-                            @item.Aciklama.Substring(0, 50);
+
+                            if (item.Aciklama != null)
+                            {
+                                @item.Aciklama.Substring(0, 50);
+                            }
                             <label>...</label>
                         }
                         else
@@ -48,9 +52,9 @@
                         }
                     </td>
                     <td style="text-align: center;">
-                        <a href="#">Düzenle</a>
+                        <a href="@Url.Action("Edit","Kategori",new {ID = item.ID})">Düzenle</a>
                         &nbsp;&nbsp;|&nbsp;&nbsp;
-                        <a href="#">Sil</a>
+                        <a href="@Url.Action("Delete","Kategori",new {ID = item.ID})">Sil</a>
                     </td>
                 </tr>
             }

@@ -125,6 +125,7 @@
     <Content Include="Areas\Admin\Views\AnaMenu\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Kategori\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Kategori\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Kategori\Edit.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

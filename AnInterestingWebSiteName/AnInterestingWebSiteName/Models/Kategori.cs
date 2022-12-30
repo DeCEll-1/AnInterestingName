@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,6 +11,10 @@ namespace AnInterestingWebSiteName.Models
     {
         public int ID { get; set; }
 
+        public int? UstKategori_ID { get; set; }
+
+        [ForeignKey("UstKategori_ID")]
+        public virtual Kategori UstKategori { get; set; }
 
         [Display(Name ="Ad")]
         [Required(ErrorMessage ="Bu Alan Boş Bırakılamaz")]
@@ -19,5 +24,8 @@ namespace AnInterestingWebSiteName.Models
         [Display(Name ="Açıklama")]
         [DataType(DataType.MultilineText)]
         public string Aciklama { get; set; }
+
+        public virtual ICollection<Kategori> Kategoris { get; set; }
+
     }
 }

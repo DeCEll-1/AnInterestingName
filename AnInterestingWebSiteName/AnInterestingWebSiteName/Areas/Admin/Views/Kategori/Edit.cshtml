@@ -6,7 +6,7 @@
 
 <div class="form">
     <div class="baslik">
-        Kategori Ekle
+        Kategori Düzenle
         @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
@@ -18,12 +18,7 @@
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
-
-            <div class="objectsItem">
-                <label>Ust Kategoriler</label>
-                <br />
-                @Html.DropDownListFor(model => model.UstKategori_ID, new SelectList(ViewBag.UstKategoriler, "Value", "Text"),htmlAttributes: new {@class = "dropDown"})
-            </div>
+            @Html.HiddenFor(model=>model.ID)
             <div class="objectsItem">
                 @Html.LabelFor(model => model.Ad):
                 <br />
@@ -41,7 +36,7 @@
             </div>
 
             <div class="objectsItem">
-                <input type="submit" value="Kategori Ekle" />
+                <input type="submit" value="Kategori Düzenle" />
             </div>
         }
 

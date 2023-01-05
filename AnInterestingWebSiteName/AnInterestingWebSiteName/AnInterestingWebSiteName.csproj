@@ -100,6 +100,7 @@
     <Content Include="Areas\Admin\Assets\CSS\LayoutPageCss.css" />
     <Content Include="Areas\Admin\Assets\CSS\RenkPaleti.css" />
     <Content Include="Areas\Admin\Assets\CSS\ViewCss.css" />
+    <Content Include="Areas\Admin\Assets\Fotograflar\_#9786.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -108,12 +109,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AnaMenuController.cs" />
     <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnInterestingWebSiteName_Model.cs" />
     <Compile Include="Models\Kategori.cs" />
+    <Compile Include="Models\Urunler.cs" />
     <Compile Include="Models\Yonetici.cs" />
     <Compile Include="Models\YoneticiTur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,6 +129,7 @@
     <Content Include="Areas\Admin\Views\Kategori\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Kategori\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Kategori\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Urun\Index.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -139,6 +143,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Controllers\" />
+    <Folder Include="Fotograflar\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

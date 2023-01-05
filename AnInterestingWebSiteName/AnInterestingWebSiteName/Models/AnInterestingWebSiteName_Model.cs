@@ -13,6 +13,8 @@ namespace AnInterestingWebSiteName.Models
         {
         }
 
+        public virtual DbSet<Urunler> Urunlers { get; set; }
+
         public virtual DbSet<Yonetici> Yoneticis { get; set; }
 
         public virtual DbSet<YoneticiTur> YoneticiTurs { get; set; }

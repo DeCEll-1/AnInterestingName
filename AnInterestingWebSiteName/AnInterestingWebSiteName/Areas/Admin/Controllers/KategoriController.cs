@@ -34,8 +34,24 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Kategori model)
         {
+            #region list
+            List<SelectListItem> kategoriler = new List<SelectListItem>();
+            kategoriler.Add(new SelectListItem { Text = "Üst Kategori", Value = "0", Selected = true });
+            foreach (Kategori item in db.Kategoris.ToList())
+            {
+                kategoriler.Add(new SelectListItem { Text = item.Ad, Value = item.ID.ToString(), Selected = false });
+            }
+
+            ViewBag.UstKategoriler = kategoriler;
+            #endregion
             if (ModelState.IsValid)
             {
+
+                if (model.UstKategori_ID==0)
+                {
+                    model.UstKategori_ID = null;
+                }
+
                 db.Kategoris.Add(model);
                 db.SaveChanges();
                 ViewBag.message = "Kategori Eklendi";
@@ -66,6 +82,12 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             {
                 try
                 {
+
+                    if (model.UstKategori_ID==0)
+                    {
+                        model.UstKategori_ID = null;
+                    }
+
                     db.Entry(model).State = EntityState.Modified;
                     db.SaveChanges();
                     ViewBag.message = "Kategori Düzenlendi";

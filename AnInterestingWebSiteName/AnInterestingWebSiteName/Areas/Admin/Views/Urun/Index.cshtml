@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AnInterestingWebSiteName.Models.Kategori>
+﻿@model IEnumerable<AnInterestingWebSiteName.Models.Urunler>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/_AdminLayoutPage.cshtml";
@@ -29,14 +29,26 @@
                 <th>@Html.DisplayNameFor(model => model.ID)</th>
                 <th>@Html.DisplayNameFor(model => model.Ad)</th>
                 <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
+                <th>@Html.DisplayNameFor(model => model.IkonYolu)</th>
+                <th>@Html.DisplayNameFor(model => model.TamResimYolu)</th>
+                <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
                 <th>Seçenekler</th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.ID</td>
-                    <td>@item.UstKategori_ID</td>
+                    <td>@item.Kategori.Ad</td>
                     <td>@item.Ad</td>
+
+                    <td>
+                        <img src="@item.TamResimYolu" alt="Tam Resim" />
+                    </td>
+
+                    <td>
+                        <img src="@item.IkonYolu" alt="İkon" />
+                    </td>
+
                     <td>
                         @if (item.Aciklama == null || item.Aciklama.Length > 50)
                         {

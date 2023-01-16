@@ -51,6 +51,11 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                 {
                     model.UstKategori_ID = null;
                 }
+                else
+                {
+                    model.UstKategori = db.Kategoris.Find(model.UstKategori_ID);
+                }
+
 
                 db.Kategoris.Add(model);
                 db.SaveChanges();
@@ -70,6 +75,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             if (ID == null || db.Kategoris.Find(ID) == null)
             {
                 ViewBag.message = "Yanlış Bir ID Girdiniz";
+                return RedirectToAction("Index");
             }
 
             return View(db.Kategoris.Find(ID));
@@ -87,6 +93,8 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                     {
                         model.UstKategori_ID = null;
                     }
+
+
 
                     db.Entry(model).State = EntityState.Modified;
                     db.SaveChanges();

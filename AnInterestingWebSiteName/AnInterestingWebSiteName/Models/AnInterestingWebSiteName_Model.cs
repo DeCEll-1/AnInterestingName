@@ -21,6 +21,8 @@ namespace AnInterestingWebSiteName.Models
 
         public virtual DbSet<Kategori> Kategoris { get; set; }
 
+        public virtual DbSet<OyunResimleri> OyunResimleris{ get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

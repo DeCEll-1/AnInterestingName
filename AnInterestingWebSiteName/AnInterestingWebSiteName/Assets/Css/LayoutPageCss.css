@@ -1,0 +1,46 @@
+﻿* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#2f4c4f+0,293545+100 */
+    background: rgb(47,76,79); /* Old browsers */
+    background: -moz-linear-gradient(top, rgb(47,76,79) 0%, rgb(41,53,69) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgb(47,76,79) 0%,rgb(41,53,69) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgb(47,76,79) 0%,rgb(41,53,69) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f4c4f', endColorstr='#293545',GradientType=0 ); /* IE6-9 */
+    height: 100vh;
+}
+/*gradient*/
+.topBar {
+}
+
+/*.gradientTopBar {
+    padding: 20px 20px 0px 20px;
+    width: 100%;*/
+/*Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#2f4c4f+0,293545+100*/
+/*background: #2f4c4f;*/ /*Old browsers */
+/*background: -moz-radial-gradient(center, ellipse cover, #2f4c4f 0%, #293545 100%);*/ /*FF3.6-15 */
+/*background: -webkit-radial-gradient(center, ellipse cover, #2f4c4f 0%,#293545 100%);*/ /*  Chrome10-25,Safari5.1-6 */
+/*background: radial-gradient(ellipse at center, #2f4c4f 0%,#293545 100%);*/ /*  W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2f4c4f', endColorstr='#293545',GradientType=1 );*/ /*IE6-9 fallback on horizontal gradient */
+/*}*/
+
+.topBar {
+    background-color: #293545;
+    width: 100%;
+    min-height: 80px;
+    padding-left:30%;
+    padding-right:30%;
+}
+
+    .topBar .objectsItem {
+        float: left;
+        margin-top: 25px;
+    }
+
+        .topBar .objectsItem a {
+            font-size:19pt;
+            text-decoration:none;
+        }

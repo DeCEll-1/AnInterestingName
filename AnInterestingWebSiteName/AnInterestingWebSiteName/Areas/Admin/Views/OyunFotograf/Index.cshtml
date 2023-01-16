@@ -1,0 +1,48 @@
+﻿@model IEnumerable<AnInterestingWebSiteName.Models.OyunResimleri>
+@using AnInterestingWebSiteName.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<div class="form">
+    <div class="baslik">
+
+        @if (ViewBag.urun!=null)
+        {
+            @ViewBag.urun.Ad <label style="float:none">Fotoğraflarının Listesi</label>
+        }
+        @if (ViewBag.message != null)
+        {
+            <label>@ViewBag.message</label>
+        }
+            <a style="float:right;" href="@Url.Action("Create","OyunFotograf",new {ID = ViewBag.urun.ID})">Fotoğraf Ekle</a>
+
+    </div>
+
+    <div>
+        <table cellpadding="0" cellspacing="0" class="table">
+
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.ID)</th>
+                <th>@Html.DisplayNameFor(model => model.Resim)</th>
+                <th>Seçenekler</th>
+            </tr>
+            @foreach (OyunResimleri item in Model)
+            {
+                <tr>
+
+
+                    <td>@item.ID</td>
+                    <td>
+                        <img class="image" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Resim" />
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Edit","OyunFotograf",new {ID = item.ID})">Düzenle</a>
+                        <a href="@Url.Action("Delete","OyunFotograf",new {ID = item.ID})">Sil</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

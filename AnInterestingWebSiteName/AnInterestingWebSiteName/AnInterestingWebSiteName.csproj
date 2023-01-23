@@ -115,7 +115,12 @@
     <Content Include="Assets\Css\RenkPaleti.css" />
     <Content Include="Areas\Admin\Assets\CSS\ViewCss.css" />
     <Content Include="Assets\Css\LayoutPageCss.css" />
+    <Content Include="Assets\Css\UrunStoreViewCss.css" />
+    <Content Include="Assets\Css\UserView.css" />
     <Content Include="Fotograflar\Arkaplan\bg.jpeg" />
+    <Content Include="Fotograflar\Etc\Buyutec.png" />
+    <Content Include="Fotograflar\KullaniciFotograflari\Smile.png" />
+    <Content Include="Fotograflar\UrunFotograflari\Logo.png" />
     <Content Include="Fotograflar\UrunFotograflari\Sad.png" />
     <Content Include="Fotograflar\UrunFotograflari\Smile.png" />
     <Content Include="Global.asax" />
@@ -128,15 +133,24 @@
     <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OyunFotografController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TagController.cs" />
     <Compile Include="Areas\Admin\Controllers\UrunController.cs" />
+    <Compile Include="Areas\Admin\Controllers\YetkiYetersizController.cs" />
+    <Compile Include="Areas\Admin\Filtre\AdminAuthenticationFilterAttribute.cs" />
+    <Compile Include="Areas\Admin\Filtre\ModeratorAuthenticationFilterAttribute.cs" />
+    <Compile Include="Classes\MagazaList.cs" />
+    <Compile Include="Classes\ProductViewUser.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ListeController.cs" />
+    <Compile Include="Controllers\UserUrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnInterestingWebSiteName_Model.cs" />
-    <Compile Include="Models\Kategori.cs" />
     <Compile Include="Models\OyunResimleri.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="Models\TagsVeUrunAraClass.cs" />
     <Compile Include="Models\Urunler.cs" />
     <Compile Include="Models\Yonetici.cs" />
     <Compile Include="Models\YoneticiTur.cs" />
@@ -147,9 +161,6 @@
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Shared\_AdminLayoutPage.cshtml" />
     <Content Include="Areas\Admin\Views\AnaMenu\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Kategori\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Kategori\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Kategori\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Urun\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Urun\Create.cshtml" />
     <Content Include="Areas\Admin\Views\OyunFotograf\Index.cshtml" />
@@ -157,9 +168,18 @@
     <Content Include="Areas\Admin\Views\Urun\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Login\Index.cshtml" />
     <Content Include="Areas\Admin\Views\OyunFotograf\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\AnaMenu\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\YetkiYetersiz\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\UrunTagCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Tag\UrunIndex.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_UserLayoutPage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Liste\Index.cshtml" />
+    <Content Include="Views\UserUrun\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

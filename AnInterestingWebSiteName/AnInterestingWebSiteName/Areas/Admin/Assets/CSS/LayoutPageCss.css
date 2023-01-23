@@ -14,15 +14,16 @@ a {
 
 .topBar {
     width: 100%;
-    min-height: 7vh;
+    min-height: 45px;
     background-color: #243830 /*açık yeşil bg*/;
     position: fixed;
+    text-align:center;
 }
 
 .leftBar {
     width: 20%;
-    margin-top: 7vh;
-    height: 93vh;
+    margin-top: 45px;
+    height: 600px;
     float: left;
     background-color: #293545 /*mavi bg*/;
 }
@@ -30,20 +31,20 @@ a {
 
 .body {
     float: left;
-    margin: 7vh 0px 0px 0px;
+    margin: 45px 0px 0px 0px;
     width:70%;
 }
 
 .kullaniciBar {
     width: contain;
-    height: 50px;
+    height: 60px;
     background-color: #2F4C4F;
 }
 
     .kullaniciBar:hover {
         border-right: solid 3px #3e6468;
         border-bottom: solid 3px #3e6468;
-        height: 47px;
+        height: 57px;
     }
 
     .kullaniciBar a {
@@ -76,3 +77,20 @@ a {
                 border-right: 3px solid #7ECBD3;
                 padding: 9px 7px 7px 10px;
             }
+
+.userDiv {
+    width:400px;
+    margin-left:auto;
+    margin-right:auto;
+
+}
+
+.kullaniciInfo {
+    color: #7DC2A6;
+}
+
+.profilFotografi{
+    float:right;
+    height:44px;
+    margin:3px;
+}

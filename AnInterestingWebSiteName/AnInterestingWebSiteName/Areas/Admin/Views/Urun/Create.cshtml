@@ -2,12 +2,14 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-
 }
 
 <div class="form">
     <div class="baslik">
         Urun Ekle
+
+        <a href="@Url.Action("Index","Urun")" style="margin-left:20px;">Ürün Listesi</a>
+
         @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
@@ -21,17 +23,11 @@
             @Html.AntiForgeryToken()
 
             <div class="objectsItem">
-                @Html.LabelFor(model => model.Ad):  
+                @Html.LabelFor(model => model.Ad):
                 <br />
                 @Html.EditorFor(model => model.Ad)
                 <br />
                 @Html.ValidationMessageFor(model => model.Ad)
-            </div>
-
-            <div class="objectsItem">
-                <label>Kategori:</label>
-                <br />
-                @Html.DropDownList("Kategori_ID", null, htmlAttributes: new { @class = "dropDown" })
             </div>
 
             <div class="objectsItem">
@@ -51,19 +47,27 @@
             </div>
 
             <div class="objectsItem">
+                @Html.LabelFor(model => model.Indirim)
+                <br />
+                @Html.EditorFor(model => model.Indirim)
+                <br />
+                @Html.ValidationMessageFor(model => model.Indirim)
+            </div>
+
+            <div class="objectsItem">
                 @Html.LabelFor(model => model.IkonYolu) <small>231px X 87px</small>
                 <br />
                 <input type="file" name="icon" value="Dosya Yükle" class="dosyaYukle" />
             </div>
 
             <div class="objectsItem">
-                @Html.LabelFor(model => model.TamResimYolu)
+                @Html.LabelFor(model => model.TamResimYolu) <small>300px X 140px</small>
                 <br />
                 <input type="file" name="fullImage" value="Dosya Yükle" class="dosyaYukle" />
             </div>
 
             <div class="objectsItem">
-                <input type="submit" value="Kategori Ekle" />
+                <input type="submit" value="Ürün Ekle" />
             </div>
         }
 

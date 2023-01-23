@@ -1,7 +1,9 @@
-﻿using AnInterestingWebSiteName.Models;
+﻿using AnInterestingWebSiteName.Areas.Admin.Filtre;
+using AnInterestingWebSiteName.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -10,52 +12,59 @@ using System.Web.Mvc;
 
 namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 {
+    [ModeratorAuthenticationFilter]
     public class UrunController : Controller
     {
-        AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
         public ActionResult Index()
         {
+            AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
             return View(db.Urunlers.ToList().Where(s => s.Aktifmi == true));
         }
 
+        [AdminAuthenticationFilter]
         [HttpGet]
         public ActionResult Create()
         {
-            ViewBag.Kategori_ID = new SelectList(db.Kategoris.ToList(), "ID", "Ad");
             return View();
         }
 
+        [AdminAuthenticationFilter]
         [HttpPost]
         public ActionResult Create(Urunler model, HttpPostedFileBase icon, HttpPostedFileBase fullImage)
         {
+            if (icon == null || fullImage == null)
+            {
+                ViewBag.message = "Lütfen Fotoğraf Giriniz";
+                return View();
+            }
+            ModelState.Remove("IkonYolu");
+            ModelState.Remove("TamResimYolu");
             if (ModelState.IsValid)
             {
                 try
                 {
-                    if (icon != null)
+                    AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
+
+                    FileInfo fimr = new FileInfo(icon.FileName);
+                    string namemr = Guid.NewGuid().ToString() + fimr.Extension;
+                    model.IkonYolu = namemr;
+                    icon.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{namemr}"));
+
+
+                    FileInfo fifi = new FileInfo(fullImage.FileName);
+                    string namefi = Guid.NewGuid().ToString() + fifi.Extension;
+                    model.TamResimYolu = namefi;
+                    fullImage.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{namefi}"));
+
+                    if (model.Indirim == null)
                     {
-                        FileInfo fi = new FileInfo(icon.FileName);
-                        string name = Guid.NewGuid().ToString() + fi.Extension;
-                        model.IkonYolu = name;
-                        icon.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
-                    }
-                    else
-                    {
-                        model.TamResimYolu = "Sad.png";
+                        model.Indirim = 0;
                     }
 
-                    if (fullImage != null)
-                    {
-                        FileInfo fi = new FileInfo(fullImage.FileName);
-                        string name = Guid.NewGuid().ToString() + fi.Extension;
-                        model.IkonYolu = name;
-                        fullImage.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
-                    }
-                    else
-                    {
-                        model.IkonYolu = "Sad.png";
-                    }
                     model.Aktifmi = true;
+
+                    model.IndirimliFiyat = model.Fiyat - ((model.Fiyat * model.Indirim) / 100);
+
                     db.Urunlers.Add(model);
                     db.SaveChanges();
                     ViewBag.message = "Ürün Ekleme Başarılı";
@@ -65,15 +74,15 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                     ViewBag.message = "Ürün Ekleme Başarısız\nHata =" + ex.Message;
                 }
             }
-            ViewBag.Kategori_ID = new SelectList(db.Kategoris.ToList(), "ID", "Ad");
             return View(model);
         }
 
 
+        [AdminAuthenticationFilter]
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            ViewBag.Kategori_ID = new SelectList(db.Kategoris.ToList(), "ID", "Ad");
+            AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
 
             if (id == null || db.Urunlers.Find(id) == null)
             {
@@ -82,39 +91,56 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             }
             return View(db.Urunlers.Find(id));
         }
-        
+
+        [AdminAuthenticationFilter]
         [HttpPost]
         public ActionResult Edit(Urunler model, HttpPostedFileBase icon, HttpPostedFileBase fullImage)
         {
 
+
+            ModelState.Remove("IkonYolu");
+            ModelState.Remove("TamResimYolu");
             if (ModelState.IsValid)
             {
                 try
                 {
+                    AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
+
                     if (icon != null)
                     {
-                        FileInfo fi = new FileInfo(icon.FileName);
-                        string name = Guid.NewGuid().ToString() + fi.Extension;
-                        model.IkonYolu = name;
-                        icon.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
+                        FileInfo fidi = new FileInfo(Server.MapPath($"~/Fotograflar/UrunFotograflari/{db.Urunlers.FirstOrDefault(s => s.ID == model.ID).IkonYolu}"));
+                        fidi.Delete();
+
+                        FileInfo fii = new FileInfo(icon.FileName);
+                        string namei = Guid.NewGuid().ToString() + fii.Extension;
+                        model.IkonYolu = namei;
+                        icon.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{namei}"));
                     }
                     else
                     {
-                        model.TamResimYolu = "Sad.png";
+                        model.IkonYolu = db.Urunlers.FirstOrDefault(s => s.ID == model.ID).IkonYolu;
                     }
+
 
                     if (fullImage != null)
                     {
-                        FileInfo fi = new FileInfo(fullImage.FileName);
-                        string name = Guid.NewGuid().ToString() + fi.Extension;
-                        model.IkonYolu = name;
-                        fullImage.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
+                        FileInfo fidfi = new FileInfo(Server.MapPath($"~/Fotograflar/UrunFotograflari/{db.Urunlers.FirstOrDefault(s => s.ID == model.ID).TamResimYolu}"));
+                        fidfi.Delete();
+
+                        FileInfo fifi = new FileInfo(fullImage.FileName);
+                        string namefi = Guid.NewGuid().ToString() + fifi.Extension;
+                        model.TamResimYolu = namefi;
+                        fullImage.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{namefi}"));
                     }
                     else
                     {
-                        model.IkonYolu = "Sad.png";
+                        model.TamResimYolu = db.Urunlers.FirstOrDefault(s => s.ID == model.ID).TamResimYolu;
                     }
+
                     model.Aktifmi = true;
+
+                    model.IndirimliFiyat = model.Fiyat - ((model.Fiyat * model.Indirim) / 100);
+
 
                     db.Entry(model).State = EntityState.Modified;
                     db.SaveChanges();
@@ -126,16 +152,29 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                 }
             }
 
-            ViewBag.Kategori_ID = new SelectList(db.Kategoris.ToList(), "ID", "Ad");
             return View(model);
         }
+        [AdminAuthenticationFilter]
         [HttpGet]
         public ActionResult Delete(int? id)
         {
-            if (id!=null||db.Urunlers.Find(id)==null)
+            AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
+            if (id != null || db.Urunlers.Find(id) == null)
             {
+                Urunler u = db.Urunlers.Find(id);
 
-                db.Urunlers.Remove(db.Urunlers.Find(id));
+                FileInfo fii = new FileInfo(Server.MapPath($"~/Fotograflar/UrunFotograflari/{u.IkonYolu}"));
+                fii.Delete();
+
+                FileInfo fifi = new FileInfo(Server.MapPath($"~/Fotograflar/UrunFotograflari/{u.TamResimYolu}"));
+                fifi.Delete();
+
+                foreach (var item in db.OyunResimleris.ToList().Where(s => s.Oyun_ID == u.ID))
+                {
+                    db.OyunResimleris.Remove(item);
+                }
+
+                db.Urunlers.Remove(u);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");

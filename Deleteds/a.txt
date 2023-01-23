@@ -1,0 +1,29 @@
+<div class="oyunFotograflari">
+
+                @{
+                    byte b = 0;
+                }
+
+                @foreach (var item in Model.OyunResimleri)
+                {
+                    if (!(b > 4))
+                    {
+                        <img class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                        b++;
+                    }
+                }
+            </div>
+
+            <div class="oyunFotograflariPreview">
+                @{
+                    b = 0;
+                }
+                @foreach (var item in Model.OyunResimleri)
+                {
+                    if (!(b > 4))
+                    {
+                        <img class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                    }
+                    b++;
+                }
+            </div>

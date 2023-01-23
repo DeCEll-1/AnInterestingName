@@ -1,0 +1,102 @@
+﻿@model AnInterestingWebSiteName.Classes.ProductViewUser
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayoutPage.cshtml";
+}
+
+
+<div class="urunTasiyici">
+
+    <div class="topDiv">
+
+        <div class="amogi">
+
+            @{
+                byte b = 0;
+            }
+
+            @foreach (var item in Model.OyunResimleri)
+            {
+
+                if (b == 0)
+                {
+                    <table class="tableOyunView">
+                        <tr>
+                            <th>
+                                <img style="margin-left:0px;" class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+
+                if (b == 1)
+                {
+                    <table style="margin-left: 158.5px" class="tableOyunView">
+                        <tr>
+                            <th>
+                                <img style="margin-left:0px;" class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img style="margin-left:-158.5px" class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+
+                if (b == 2)
+                {
+                    <table style="margin-left:317px" class="tableOyunView">
+                        <tr>
+                            <th>
+                                <img style="margin-left:0px;" class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img style="margin-left:-317px" class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+
+
+                if (b == 3)
+                {
+                    <table style="margin-left:475.5px;" class="tableOyunView">
+                        <tr>
+                            <th>
+                                <img style="margin-left:475.5px;" class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+                b++;
+            }
+
+        </div>
+
+
+        <div class="oyunBilgisi">
+
+
+
+        </div>
+
+
+    </div>
+
+</div>

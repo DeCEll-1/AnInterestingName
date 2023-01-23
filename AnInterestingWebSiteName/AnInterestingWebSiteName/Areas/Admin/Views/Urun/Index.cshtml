@@ -1,34 +1,34 @@
 ﻿@model IEnumerable<AnInterestingWebSiteName.Models.Urunler>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "a";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-
 }
-
 <div class="form">
     <div class="baslik">
-        Kategori Listesi
+        Ürun Listesi
+        <a href="@Url.Action("Create","Urun")" style="margin-left:20px;">Ürün Ekle</a>
+
+
         @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
         }
     </div>
-    <div style="margin-top:1vh;">
+    <div>
         <table cellpadding="0" cellspacing="0" class="table">
             <tr>
                 <th>@Html.DisplayNameFor(model => model.ID)</th>
-                <th>@Html.DisplayNameFor(model => model.Kategori)</th>
                 <th>@Html.DisplayNameFor(model => model.Ad)</th>
                 <th>@Html.DisplayNameFor(model => model.TamResimYolu)</th>
                 <th>@Html.DisplayNameFor(model => model.IkonYolu)</th>
                 <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
                 <th>Seçenekler</th>
+                <th>Sil</th>
             </tr>
             @foreach (var item in Model)
             {
                 <tr>
                     <td>@item.ID</td>
-                    <td>@item.Kategori.Ad</td>
                     <td>@item.Ad</td>
 
                     <td>
@@ -58,7 +58,10 @@
                         <a href="@Url.Action("Edit","Urun",new {ID = item.ID})">Düzenle</a>
                         <br />
                         <a href="@Url.Action("Index","OyunFotograf",new {ID = item.ID})">Fotoğrafları</a>
-                        <br />  
+                        <br />
+                        <a href="@Url.Action("UrunIndex","Tag",new {ID = item.ID})">Etiketleri</a>
+                    </td>
+                    <td>
                         <a href="@Url.Action("Delete","Urun",new {ID = item.ID})">Sil</a>
                     </td>
                 </tr>

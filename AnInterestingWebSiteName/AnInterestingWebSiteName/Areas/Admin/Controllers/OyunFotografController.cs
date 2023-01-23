@@ -1,4 +1,5 @@
-﻿using AnInterestingWebSiteName.Models;
+﻿using AnInterestingWebSiteName.Areas.Admin.Filtre;
+using AnInterestingWebSiteName.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
@@ -10,6 +11,7 @@ using System.Xml.Linq;
 
 namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 {
+    [ModeratorAuthenticationFilter]
     public class OyunFotografController : Controller
     {
         AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
@@ -67,6 +69,9 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                     string name = Guid.NewGuid().ToString() + fi.Extension;
                     model.Resim = name;
                     image.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
+
+
+
                     db.OyunResimleris.Add(model);
                     db.SaveChanges();
                     //çalış
@@ -119,11 +124,15 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 
                     FileInfo fid = new FileInfo(Server.MapPath($"~/Fotograflar/UrunFotograflari/{model.Resim}"));
                     fid.Delete();
+
                     model.Urunler = db.Urunlers.Find(model.Oyun_ID);
+
                     FileInfo fi = new FileInfo(image.FileName);
                     string name = Guid.NewGuid().ToString() + fi.Extension;
                     model.Resim = name;
                     image.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
+
+
                     db.Entry(model).State = System.Data.Entity.EntityState.Modified;
                     db.OyunResimleris.AddOrUpdate(model) ;
                     db.SaveChanges();

@@ -19,9 +19,11 @@ namespace AnInterestingWebSiteName.Models
 
         public virtual DbSet<YoneticiTur> YoneticiTurs { get; set; }
 
-        public virtual DbSet<Kategori> Kategoris { get; set; }
-
         public virtual DbSet<OyunResimleri> OyunResimleris{ get; set; }
+
+        public virtual DbSet<Tag> Tags{ get; set; }
+
+        public virtual DbSet<TagsVeUrunAraClass> TagsVeUrunAraClasses{ get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

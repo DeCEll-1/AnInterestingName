@@ -8,15 +8,17 @@
 <div class="form">
     <div class="baslik">
 
-        @if (ViewBag.urun!=null)
+        @if (ViewBag.urun != null)
         {
             @ViewBag.urun.Ad <label style="float:none">Fotoğraflarının Listesi</label>
         }
+        <a href="@Url.Action("Index","Urun")" style="margin-left:20px;">Ürünlerin Listesi</a>
+        <a href="@Url.Action("Create","OyunFotograf",new {ID = ViewBag.urun.ID}) " style="margin-left:20px;">Fotoğraf Ekle</a>
+
         @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
         }
-            <a style="float:right;" href="@Url.Action("Create","OyunFotograf",new {ID = ViewBag.urun.ID})">Fotoğraf Ekle</a>
 
     </div>
 

@@ -6,24 +6,87 @@
     <title>@ViewBag.Title</title>
     <link href="~/Assets/Css/RenkPaleti.css" rel="stylesheet" />
     <link href="~/Assets/Css/LayoutPageCss.css" rel="stylesheet" />
+    <link href="~/Assets/Css/UserView.css" rel="stylesheet" />
+    <link href="~/Assets/Css/UrunStoreViewCss.css" rel="stylesheet" />
 </head>
 <body>
     <div class="gradientTopBar">
 
         <div class="topBar">
 
+
+            <div class="objectsItem" style="padding:0; margin:0;">
+                <a href="@Url.Action("Index","Liste")">
+                    <img style="width:80px;height:80px;" src="~/Fotograflar/UrunFotograflari/Logo.png" />
+                </a>
+            </div>
+
             <div class="objectsItem">
-                <a href="#">Mağaza</a>
+
+                <table class="tablea" cellpadding="0" cellspacing="0">
+                    <tr style="visibility:visible!important">
+                        <th>
+                            <a style="font-size:19pt!important;" href="#1">
+                                <label>Mağaza</label>
+                            </a>
+                        </th>
+                    </tr>
+                    @* - *@
+                    <tr>
+                        <td class="araDiv">
+                            <a href="#">
+                                <label class="label"><label>Kategoriler</label></label>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            @* /// *@
+            <div class="objectsItem">
+
+                <table class="tablea" cellpadding="0" cellspacing="0">
+                    <tr style="visibility:visible!important">
+                        <th>
+                            <a style="font-size:19pt!important;" href="#1">
+                                <label>Profil</label>
+                            </a>
+                        </th>
+                    </tr>
+                    @* - *@
+                    <tr>
+                        <td class="araDiv">
+                            <a href="#2">
+                                <label>Profil Sayfası</label>
+                            </a>
+                        </td>
+                    </tr>
+                    @* - *@
+                    <tr>
+                        <td class="araDiv">
+                            <a href="#2">
+                                <label>Ayarlar</label>
+                            </a>
+                        </td>
+                    </tr>
+
+                </table>
+
             </div>
 
         </div>
 
     </div>
 
+    <div class="araDiv" style="height: 3px;">
 
-
-    <div class="main">
-        @RenderBody()
     </div>
+
+    <div class="gradientBackground">
+        <div class="main">
+            @RenderBody()
+        </div>
+    </div>
+
+
 </body>
 </html>

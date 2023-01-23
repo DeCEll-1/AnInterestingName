@@ -50,5 +50,13 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session["adminSession"] = null;
+
+            return RedirectToAction("Index","Login");
+        }
+
     }
 }

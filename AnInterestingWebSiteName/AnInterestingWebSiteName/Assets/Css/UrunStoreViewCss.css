@@ -1,0 +1,98 @@
+﻿
+
+.urunTasiyici {
+    border: 1px solid #5c5c5c;
+    margin-left: auto;
+    margin-right: auto;
+    width: 942px;
+}
+
+.topDiv {
+    border: 1px solid #293545;
+    min-height: 444px;
+    width: 940px;
+}
+
+.oyunFotograflari {
+    border: 1px solid #293545;
+    min-height: 338px;
+    width: 638px;
+    float:left;
+}
+
+.oyunFotografi {
+    height: 332px;
+    width: 632px;
+    padding: 3px;
+    background-color: #293645;
+    opacity:1;
+}
+
+.oyunBilgisi {
+    border: 1px solid #293545;
+    float: left;
+    width: 298px;
+    background-color: #293645;
+    height: 432px;
+}
+
+.oyunFotograflariPreview {
+    border: 1px solid #293545;
+    float: right;
+    width: 634px;
+    height: 102px;
+    background-color: #293645;
+}
+
+.oyunFotograflariPreviewImage {
+    height: 102px;
+    width: 158.5px;
+}
+
+.amogi {
+    height: 444px;
+    width: 638px;
+    float: left;
+}
+
+.tableOyunView {
+    float: left;
+    position: absolute;
+}
+
+.tableOyunView tr th {
+}
+
+.tableOyunView tr td {
+    padding-bottom: 332px;
+    visibility: hidden;
+    background-color: #293545;
+    height: 20px;
+    color: #8EB7ED;
+    /*padding:0px 20px;*/
+    position: absolute;
+    width:0;
+    height:0;
+}
+
+.tableOyunView tbody {
+}
+
+.tableOyunView tr:hover td {
+    visibility: visible;
+}
+
+
+.tableOyunView :hover td {
+    visibility: visible;
+
+}
+
+
+
+.oyunBilgisi {
+    width: 280px !important;
+    padding: 0px 10px 10px 10px;
+    background-color: #293545;
+    /*border-bottom: 1px solid #8EB7ED;*/
+}

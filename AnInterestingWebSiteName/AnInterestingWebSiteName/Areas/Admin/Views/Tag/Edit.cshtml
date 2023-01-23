@@ -1,13 +1,15 @@
-﻿@model AnInterestingWebSiteName.Models.Kategori
+﻿@model AnInterestingWebSiteName.Models.Tag
 @{
     ViewBag.Title = "Create";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
-
 }
 
 <div class="form">
     <div class="baslik">
-        Kategori Düzenle
+        Etiket Ekle
+
+        <a href="@Url.Action("Index","Tag")" style="margin-left:20px;">Etiket Listesi</a>
+
         @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
@@ -18,10 +20,10 @@
 
         @using (Html.BeginForm())
         {
-            @Html.AntiForgeryToken()
-            @Html.HiddenFor(model=>model.ID)
+            @Html.AntiForgeryToken();
+
             <div class="objectsItem">
-                @Html.LabelFor(model => model.Ad):
+                @Html.LabelFor(model => model.Ad)
                 <br />
                 @Html.EditorFor(model => model.Ad)
                 <br />
@@ -29,18 +31,9 @@
             </div>
 
             <div class="objectsItem">
-                @Html.LabelFor(model => model.Aciklama):
-                <br />
-                @Html.EditorFor(model => model.Aciklama)
-                <br />
-                @Html.ValidationMessageFor(model => model.Aciklama)
+                <input type="submit" name="submit" value="Etiket Ekle" />
             </div>
 
-            <div class="objectsItem">
-                <input type="submit" value="Kategori Düzenle" />
-            </div>
         }
-
     </div>
-
 </div>

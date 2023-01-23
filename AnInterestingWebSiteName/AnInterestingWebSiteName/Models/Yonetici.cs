@@ -32,6 +32,11 @@ namespace AnInterestingWebSiteName.Models
         [StringLength(63, ErrorMessage = "Bu Alan En Fazla 63 Karakter Olabilir")]
         public string KullaniciAdi { get; set; }
 
+        [Required]
+        [Display(Name ="Profil Fotoğrafı")]
+        [StringLength(155)]
+        public string ProfilFotografi { get; set; }
+
         [Required(ErrorMessage = "Bu Alan Zorunludur")]
         [StringLength(20,MinimumLength =8, ErrorMessage = "Bu Alan En Az 8, En Fazla 20 Karakter Olabilir")]
         public string Sifre { get; set; }
@@ -39,7 +44,6 @@ namespace AnInterestingWebSiteName.Models
         [Required(ErrorMessage = "Bu Alan Zorunludur")]
         [StringLength(255, ErrorMessage = "Bu Alan En Fazla 255 Karakter Olabilir")]
         public string Mail { get; set; }
-
 
         public bool Aktif { get; set; }
     }

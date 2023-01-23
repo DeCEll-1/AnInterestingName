@@ -1,12 +1,15 @@
 ﻿namespace AnInterestingWebSiteName.Migrations
 {
+    using AnInterestingWebSiteName.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
+    using System.Data.Entity.Validation;
     using System.Linq;
 
     internal sealed class Configuration : DbMigrationsConfiguration<AnInterestingWebSiteName.Models.AnInterestingWebSiteName_Model>
     {
+        AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName_Model();
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -15,10 +18,34 @@
 
         protected override void Seed(AnInterestingWebSiteName.Models.AnInterestingWebSiteName_Model context)
         {
-            //  This method will be called after migrating to the latest version.
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
+
+
+            try
+            {
+                context.YoneticiTurs.AddOrUpdate(y => y.ID, new Models.YoneticiTur() { ID = 1, Yetki = 1, Ad = "Admin" });
+                context.YoneticiTurs.AddOrUpdate(y => y.ID, new Models.YoneticiTur() { ID = 2, Yetki = 2, Ad = "Moderatör" });
+
+                context.Yoneticis.AddOrUpdate(y => y.ID, new Models.Yonetici() { ID = 1, YoneticiTur_ID = 1, Isim = "Arda", SoyIsim = "Eren", KullaniciAdi = "DeCell", ProfilFotografi = "Smile.png", Sifre = "123456789", Mail = "Poedx2@gmail.com", Aktif = true });
+
+                context.Yoneticis.AddOrUpdate(y => y.ID, new Models.Yonetici() { ID = 2, YoneticiTur_ID = 2, Isim = "Ardaa", SoyIsim = "Erena", KullaniciAdi = "DeCella", ProfilFotografi = "Smile.png", Sifre = "123456789", Mail = "Poedx4@gmail.com", Aktif = true });
+
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
     }
 }

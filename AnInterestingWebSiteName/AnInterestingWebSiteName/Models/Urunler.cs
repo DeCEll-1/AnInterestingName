@@ -12,11 +12,6 @@ namespace AnInterestingWebSiteName.Models
 
         public int ID { get; set; }
 
-        public int Kategori_ID { get; set; }
-
-        [ForeignKey("Kategori_ID")]
-        public virtual Kategori Kategori { get; set; }
-
         [Display(Name = "Ürün Adı")]
         [Required(ErrorMessage ="Lütfen Bu Alanı Doldurunuz")]
         [StringLength(64,ErrorMessage ="Bu Alan En Fazla 64 Karakter Olabilir")]
@@ -28,12 +23,21 @@ namespace AnInterestingWebSiteName.Models
 
         [Display(Name = "Ürünün Fiyatı")]
         [Required(ErrorMessage = "Lütfen Bu Alanı Doldurunuz")]
-        public int Fiyat { get; set; }
+        public double Fiyat { get; set; }
 
+        [Range(0,100)]
+        [Display(Name = "İndirim")]
+        public byte? Indirim { get; set; }
+
+        [Display(Name ="İndirimli Fiyat")]
+        public double? IndirimliFiyat { get; set; }
+
+        [Required( ErrorMessage ="Lütfen Fotoğraf Giriniz")]
         [Display(Name ="İkon")]
         [StringLength(155)]
         public string IkonYolu { get; set; }
 
+        [Required( ErrorMessage ="Lütfen Fotoğraf Giriniz")]
         [Display(Name = "Tam Resim")]
         [StringLength(155)]
         public string TamResimYolu { get; set; }

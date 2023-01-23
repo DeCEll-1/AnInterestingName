@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using AnInterestingWebSiteName.Models
+@{ 
+    Yonetici y = Session["adminSession"] as Yonetici;
+}
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <title>@Page.Title</title>
@@ -11,32 +17,30 @@
 
     @* Top Bar *@
     <div class="topBar">
-        
+        <div class="userDiv">
+
+            <label class="kullaniciInfo">
+            Günaydın @y.KullaniciAdi
+            </label>
+        </div>
     </div>
 
 
     <div class="leftBar">
         <div class="kullaniciBar">
-            <a href="#">Profil</a>
+            <a href="@Url.Action("Edit","AnaMenu")">Profil</a>
+            <img class="profilFotografi" src="~/Fotograflar/KullaniciFotograflari/@y.ProfilFotografi" alt="Profil Fotoğrafı" />
             <br />
             <a href="#">>   Ayarlar</a>
+            <br />
+            <a style="color: #C5F19F" href="@Url.Action("LogOut","Login")">>    Çıkış</a>
         </div>
         <div class="menuBar">
             <ul>
 
-                <!-- #region Kategori -->
-                <a href="@Url.Action("Index","Kategori")">
-                <li>Kategori</li></a>
-
-                <a href="@Url.Action("Index","Kategori")">
-                <li>> &nbsp;&nbsp;&nbsp;Kategori Listesi</li></a>
-
-                <a href="@Url.Action("Create","Kategori")">
-                <li>> &nbsp;&nbsp;&nbsp;Kategori Ekle</li></a>
-                <!-- #endregion -->
                 <!-- #region Urun-->
                 <a href="@Url.Action("Index","Urun")">
-                <li>Urunler</li></a>
+                <li style="color:#C5F19F">Urunler</li></a>
 
                 <a href="@Url.Action("Index","Urun")">
                 <li>> &nbsp;&nbsp;&nbsp;Urunlerin Listesi</li></a>
@@ -44,18 +48,26 @@
                 <a href="@Url.Action("Create","Urun")">
                 <li>> &nbsp;&nbsp;&nbsp;Urun Ekle</li></a>
                 <!-- #endregion -->
+
                 <!-- #region Fotoğraf Yolları -->
 
                 <a href="@Url.Action("Index","OyunFotograf")">
-                <li>Oyun Fotoğrafları</li></a>
-
-                <a href="@Url.Action("Index","OyunFotograf")">
-                <li>> &nbsp;&nbsp;&nbsp;Fotoğrafların Listesi</li></a>
+                <li style="color:#C5F19F">Oyun Fotoğrafları</li></a>
 
                 <a href="@Url.Action("Create","OyunFotograf")">
                 <li>> &nbsp;&nbsp;&nbsp;Fotoğraf Ekle</li></a>
                 <!-- #endregion -->
 
+                <!-- #region Tags -->
+                <a href="@Url.Action("Index","Tag")">
+                <li style="color:#C5F19F">Etiketler</li></a>
+
+                <a href="@Url.Action("Index","Tag")">
+                <li>> &nbsp;&nbsp;&nbsp;Etiket Listesi</li></a>
+
+                <a href="@Url.Action("Create","Tag")">
+                <li>> &nbsp;&nbsp;&nbsp;Etiket Ekle</li></a>
+                <!-- #endregion -->
             </ul>
         </div>
     </div>

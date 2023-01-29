@@ -8,6 +8,11 @@
     <div class="baslik">
         Etiket Listesi
         <a href="@Url.Action("Create","Tag")" style="margin-left:20px;">Etiket Ekle</a>
+
+        <a href="@Url.Action("Index","Tag",new {a=1})" style="margin-left:20px;">Ekleme Zamanına Göre Sırala</a>
+
+        <a href="@Url.Action("Index","Tag",new {a=0})" style="margin-left:20px;">Alfabeye Göre Sırala</a>
+
         @if (ViewBag.message != null)
         {
             @ViewBag.message;

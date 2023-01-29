@@ -18,7 +18,52 @@ namespace AnInterestingWebSiteName.Controllers
         [HttpGet]
         public ActionResult Index(int? id)
         {
+            //TempData["message"] = "test";
+
             MagazaList ml = new MagazaList();
+
+            if (id != null)
+            {
+                MagazaList mlv = new MagazaList();
+
+                foreach (Urunler urun in db.Urunlers.ToList().Where(s => s.Aktifmi == true))
+                {
+                    foreach (TagsVeUrunAraClass tvuac in db.TagsVeUrunAraClasses.ToList().Where(s => s.Tag_ID == id))
+                    {
+                        if (tvuac.Urun_ID == urun.ID)
+                        {
+
+                            if (mlv.Urunler == null)
+                            {
+                                List<Urunler> geciciu = new List<Urunler>();
+
+                                geciciu.Add(urun);
+
+                                mlv.Urunler = geciciu;
+
+
+                            }
+                            else
+                            {
+                                List<Urunler> geciciu = (List<Urunler>)mlv.Urunler;
+
+                                geciciu.Add(urun);
+
+                                mlv.Urunler = geciciu;
+                            }
+                        }
+                    }
+
+
+                }
+
+                mlv.OyunResimleri = db.OyunResimleris.ToList();
+
+                mlv.TagsVeUrunAraClass = db.TagsVeUrunAraClasses.ToList();
+
+                mlv.Tag = db.Tags.ToList();
+                return View(mlv);
+            }
 
             ml.Urunler = db.Urunlers.ToList().Where(s => s.Aktifmi == true);
 
@@ -34,7 +79,7 @@ namespace AnInterestingWebSiteName.Controllers
         [HttpPost]
         public ActionResult Index(string searchBarText)
         {
-            if (searchBarText == ""||searchBarText==null)
+            if (searchBarText == "" || searchBarText == null)
             {
                 MagazaList mlm = new MagazaList();
 
@@ -44,7 +89,7 @@ namespace AnInterestingWebSiteName.Controllers
 
                 mlm.TagsVeUrunAraClass = db.TagsVeUrunAraClasses.ToList();
 
-                mlm.Tag= db.Tags.ToList();
+                mlm.Tag = db.Tags.ToList();
 
                 return View(mlm);
             }
@@ -55,15 +100,10 @@ namespace AnInterestingWebSiteName.Controllers
 
             ml.Urunler = db.Urunlers.ToList().Where(s => s.Aktifmi == true);
 
-            ml.TagsVeUrunAraClass.ToList();
-
-            ml.OyunResimleri.ToList();
-
-
 
             foreach (Urunler item in ml.Urunler)
             {
-                if (item.Ad.ToLower().Contains(searchBarText.ToLower())||item.Aciklama.ToLower().Contains(searchBarText.ToLower()))
+                if (item.Ad.ToLower().Contains(searchBarText.ToLower()) || item.Aciklama.ToLower().Contains(searchBarText.ToLower()))
                 {
 
                     if (mlv.Urunler == null)
@@ -134,6 +174,12 @@ namespace AnInterestingWebSiteName.Controllers
             return View(mlv);
         }
 
+        public ActionResult TagIndex()
+        {
+            MagazaList ml = new MagazaList();
+            ml.Tag = db.Tags.ToList().OrderBy(s => s.Ad);
+            return View(ml);
+        }
 
     }
 }

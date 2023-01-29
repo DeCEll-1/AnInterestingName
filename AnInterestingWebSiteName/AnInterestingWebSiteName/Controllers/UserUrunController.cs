@@ -16,15 +16,33 @@ namespace AnInterestingWebSiteName.Controllers
         public ActionResult Index(int? id)
         {
 
-            if (id == null || db.Urunlers.Find(id).Aktifmi == false)
+            if (id == null || db.Urunlers.Find(id).Aktifmi == false||db.Urunlers.Find(id)==null)
             {
-                ViewBag.message = "Yanlış Bir ID Girildi";
+                TempData["message"] = "Ürün Bulunamadı";
                 return RedirectToAction("Index", "Liste");
             }
 
             ProductViewUser pvu = new ProductViewUser();
 
+            if (Session["userSession"]!=null)
+            {
+                Kullanici k = (Kullanici)Session["userSession"];
+                if (db.Kutuphanes.Count(s => s.Kullanici_ID == k.ID && s.Oyun_ID == id)>0)
+                {
+                    pvu.Kutuphanedemi = true;
+                }
+                else
+                {
+                    pvu.Kutuphanedemi = false;
+                }
+            }
+
+
             pvu.Urun = db.Urunlers.Find(id);
+
+            pvu.Urun.Yayinci = db.Firmas.Find(pvu.Urun.Yayinci_ID);
+
+            pvu.Urun.Yapimci = db.Firmas.Find(pvu.Urun.Yapimci_ID);
 
             pvu.Tag = null;
 

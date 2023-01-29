@@ -3,6 +3,7 @@ using AnInterestingWebSiteName.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -15,20 +16,42 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 
         [ModeratorAuthenticationFilter]
         // GET: Admin/Tag
-        public ActionResult Index()
+        public ActionResult Index(int? a)
         {
-            return View(db.Tags.ToList());
+
+            if (a == 0)
+            {
+                return View(db.Tags.ToList().OrderBy(s => s.Ad));
+            }
+            else if (a == 1)
+            {
+                return View(db.Tags.ToList().OrderBy(s => s.ID).Reverse());
+            }
+            return View(db.Tags.ToList().OrderBy(s => s.Ad));
         }
 
         public ActionResult UrunIndex(int? id)
         {
+            int? a = ViewBag.etcint2;
+
+            if (a != null)
+            {
+                ViewBag.etcints1 = (int)a;
+                ViewBag.urunad = db.Urunlers.Find(a).Ad;
+
+                ViewBag.etcint2 = a;
+
+                return View(db.TagsVeUrunAraClasses.ToList().Where(s => s.Urun_ID == a));
+            }
+
             if (id == null || db.Urunlers.Find(id) == null)
             {
-                ViewBag.message = "Yanlış Bir ID Girdiniz";
+                ViewBag.message = "Ürün Bulunamadı";
                 return RedirectToAction("Index", "Urun");
             }
             ViewBag.etcints1 = (int)id;
             ViewBag.urunad = db.Urunlers.Find(id).Ad;
+            TempData["etcint3"] = id;
             return View(db.TagsVeUrunAraClasses.ToList().Where(s => s.Urun_ID == id));
         }
 
@@ -70,29 +93,35 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             #endregion
 
             #region List
+
             List<SelectListItem> etiketler = new List<SelectListItem>();
 
             List<Tag> tagl = db.Tags.ToList();
 
+            List<TagsVeUrunAraClass> tvuacl = db.TagsVeUrunAraClasses.ToList();
 
-            foreach (Tag item in db.Tags.ToList())
+            tagl.OrderBy(s => s.Ad);
+
+            foreach (Tag tag in tagl)
             {
-                if (db.TagsVeUrunAraClasses.FirstOrDefault(s => s.Urun_ID == id) != null)
+                bool a = true;
+                foreach (TagsVeUrunAraClass tvuac in tvuacl)
                 {
-                    foreach (var item2 in db.TagsVeUrunAraClasses.ToList().Where(s => s.Urun_ID == id))
+                    if (tag.ID == tvuac.Tag_ID && tvuac.Urun_ID == id)
                     {
-                        if (!(item.ID == item2.Tag_ID))
-                        {
-                            etiketler.Add(new SelectListItem { Text = item.Ad, Value = item.ID.ToString(), Selected = false });
-                        }
+                        a = false;
                     }
                 }
-                else
+                if (a)
                 {
-                    etiketler.Add(new SelectListItem { Text = item.Ad, Value = item.ID.ToString(), Selected = false });
+                    etiketler.Add(new SelectListItem { Text = tag.Ad, Value = tag.ID.ToString(), Selected = false });
                 }
             }
+
+            ViewBag.Etiketler = null;
+
             ViewBag.Etiketler = etiketler;
+
             #endregion
 
             TempData["etcint2"] = (int)id;
@@ -131,30 +160,38 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             }
 
             #region List
+
             List<SelectListItem> etiketler = new List<SelectListItem>();
 
             List<Tag> tagl = db.Tags.ToList();
 
+            List<TagsVeUrunAraClass> tvuacl = db.TagsVeUrunAraClasses.ToList();
 
-            foreach (Tag item in db.Tags.ToList())
+            tagl.OrderBy(s => s.Ad);
+
+            foreach (Tag tag in tagl)
             {
-                if (db.TagsVeUrunAraClasses.FirstOrDefault(s => s.Urun_ID == a) != null)
+                bool s = true;
+                foreach (TagsVeUrunAraClass tvuac in tvuacl)
                 {
-                    foreach (var item2 in db.TagsVeUrunAraClasses.ToList().Where(s => s.Urun_ID == a))
+                    if (tag.ID == tvuac.Tag_ID && tvuac.Urun_ID == a)
                     {
-                        if (!(item.ID == item2.Tag_ID))
-                        {
-                            etiketler.Add(new SelectListItem { Text = item.Ad, Value = item.ID.ToString(), Selected = false });
-                        }
+                        s = false;
                     }
                 }
-                else
+                if (s)
                 {
-                    etiketler.Add(new SelectListItem { Text = item.Ad, Value = item.ID.ToString(), Selected = false });
+                    etiketler.Add(new SelectListItem { Text = tag.Ad, Value = tag.ID.ToString(), Selected = false });
                 }
             }
+
+            ViewBag.Etiketler = null;
+
             ViewBag.Etiketler = etiketler;
+
             #endregion
+
+            TempData["etcint2"] = a;
 
             return View(model);
         }
@@ -184,6 +221,12 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             {
                 try
                 {
+
+                    if (db.Tags.Count(s => s.Ad == model.Ad) > 0)
+                    {
+                        ViewBag.message = "Etiket Zaten Ekli";
+                        return View(model);
+                    }
 
                     db.Tags.Add(model);
                     db.SaveChanges();
@@ -276,6 +319,8 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                 db.TagsVeUrunAraClasses.Remove(item);
             }
 
+            TempData["etcint2"] = id;
+
             db.Tags.Remove(db.Tags.Find(id));
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -290,14 +335,14 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Urun");
             }
 
-            int a = db.TagsVeUrunAraClasses.Find(id).Urun_ID;
+            int idf = (int)id;
+
+            idf = db.TagsVeUrunAraClasses.Find(idf).Urun_ID;
 
             db.TagsVeUrunAraClasses.Remove(db.TagsVeUrunAraClasses.Find(id));
 
-
-
             db.SaveChanges();
-            return RedirectToAction("UrunIndex", a);
+            return RedirectToAction("UrunIndex", new { ID = idf  });
         }
     }
 }

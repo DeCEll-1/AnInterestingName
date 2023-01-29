@@ -24,6 +24,18 @@
             @Html.AntiForgeryToken()
 
             <div class="objectsItem">
+                Yayıncı:
+                <br />
+                @Html.DropDownListFor(model => model.Yayinci_ID, new SelectList(ViewBag.Yayıncı, "Value", "Text"), htmlAttributes: new { @class = "dropDown" })
+            </div>
+
+            <div class="objectsItem">
+                Yapimci:
+                <br />
+                @Html.DropDownListFor(model => model.Yapimci_ID, new SelectList(ViewBag.Yapimci, "Value", "Text"), htmlAttributes: new { @class = "dropDown" })
+            </div>
+
+            <div class="objectsItem">
                 @Html.LabelFor(model => model.Ad):
                 <br />
                 @Html.EditorFor(model => model.Ad)
@@ -37,6 +49,30 @@
                 @Html.EditorFor(model => model.Aciklama)
                 <br />
                 @Html.ValidationMessageFor(model => model.Aciklama)
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.AciklamaAlt1):
+                <br />
+                @Html.EditorFor(model => model.AciklamaAlt1)
+                <br />
+                @Html.ValidationMessageFor(model => model.AciklamaAlt1)
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.AciklamaAlt2):
+                <br />
+                @Html.EditorFor(model => model.AciklamaAlt2)
+                <br />
+                @Html.ValidationMessageFor(model => model.AciklamaAlt2)
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.AciklamaAlt3):
+                <br />
+                @Html.EditorFor(model => model.AciklamaAlt3)
+                <br />
+                @Html.ValidationMessageFor(model => model.AciklamaAlt3)
             </div>
 
             <div class="objectsItem">
@@ -65,6 +101,12 @@
                 @Html.LabelFor(model => model.TamResimYolu)
                 <br />
                 <input type="file" name="fullImage" value="Dosya Yükle" class="dosyaYukle" />
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.ArkaPlanResmi)
+                <br />
+                <input type="file" name="arkaPlanResmi" value="Dosya Yükle" class="dosyaYukle" />
             </div>
 
             <div class="objectsItem">

@@ -16,45 +16,43 @@
     <div class="tasiyici">
 
         <div class="content">
-            @using (Html.BeginForm()) {
+            @using (Html.BeginForm())
+            {
 
-            <div class="baslik">
-                <h4>Giriş Ekranı</h4>
-
-
-
-            </div>
-
-            <div class="ekran">
-
-                <div class="item">
-                    @Html.DisplayNameFor(model => model.Mail):
-                    <br />
-                    @Html.EditorFor(model => model.Mail)
-                    <br />
-                    @Html.ValidationMessageFor(model => model.Mail)
+                <div class="baslik">
+                    <h4>Giriş Ekranı</h4>
                 </div>
 
-                <div class="item">
-                    @Html.DisplayNameFor(model => model.Sifre):
-                    <br />
-                    @Html.EditorFor(model => model.Sifre)
-                    <br />
-                    @Html.ValidationMessageFor(model => model.Sifre)
-                </div>
+                <div class="ekran">
 
-                <div class="item">
-                    <input type="submit" value="Giriş" />
-                </div>
+                    <div class="item">
+                        @Html.DisplayNameFor(model => model.Mail):
+                        <br />
+                        @Html.EditorFor(model => model.Mail)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Mail)
+                    </div>
 
-                <div class="item">
-                    @if (ViewBag.message != null)
-                    {
-                        @ViewBag.message
-                    }
-                </div>
+                    <div class="item">
+                        @Html.DisplayNameFor(model => model.Sifre):
+                        <br />
+                        @Html.EditorFor(model => model.Sifre)
+                        <br />
+                        @Html.ValidationMessageFor(model => model.Sifre)
+                    </div>
 
-            </div>
+                    <div class="item">
+                        <input type="submit" value="Giriş" />
+                    </div>
+
+                    <div class="item">
+                        @if (ViewBag.message != null)
+                        {
+                            @ViewBag.message
+                        }
+                    </div>
+
+                </div>
 
             }
         </div>

@@ -2,13 +2,12 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayoutPage.cshtml";
+    AnInterestingWebSiteName.Models.Kullanici k = (AnInterestingWebSiteName.Models.Kullanici)Session["userSession"];
 }
 
 
 <div class="urunTasiyici">
-
     <div class="topDiv">
-
         <div class="amogi">
 
             @{
@@ -28,7 +27,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <img class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                                <img style="visibility:visible;" class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
                             </td>
                         </tr>
                     </table>
@@ -74,12 +73,12 @@
                     <table style="margin-left:475.5px;" class="tableOyunView">
                         <tr>
                             <th>
-                                <img style="margin-left:475.5px;" class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                                <img class="oyunFotograflariPreviewImage" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
                             </th>
                         </tr>
                         <tr>
                             <td>
-                                <img class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
+                                <img style="margin-left:-475.5px;" class="oyunFotografi" src="~/Fotograflar/UrunFotograflari/@item.Resim" alt="Alternate Text" />
                             </td>
                         </tr>
                     </table>
@@ -88,15 +87,143 @@
             }
 
         </div>
-
-
         <div class="oyunBilgisi">
+            <img class="oyunBilgisiFotografi" src="~/Fotograflar/UrunFotograflari/@Model.Urun.TamResimYolu" alt="Alternate Text" />
+            <div class="oyunDetaylari">
+                <label style="word-wrap: break-word">
+                    @Model.Urun.Aciklama
+                </label>
+                <br />
+                <br />
+                <small class="oyunDetaylariItem">Yayın Tarihi: @Model.Urun.YayinTarihi.Date</small>
+                <br />
+                <small class="oyunDetaylariItem">
+                    Yayıncı:
+                    <a style="text-decoration: none; color: #7DC2A6" href="#">
+                        @Model.Urun.Yayinci.Ad
+                    </a>
+                </small>
+                <br />
+                <small class="oyunDetaylariItem">
+                    Yapımcı:
+                    <a style="text-decoration: none; color: #7DC2A6" href="#">
+                        @Model.Urun.Yapimci.Ad
+                    </a>
+                </small>
+                <br />
+                <br />
+                <br />
+                <small class="oyunDetaylariItem">Etiketler:</small>
+                <br />
+                @{
+                    int i = 0;
+                }
+
+                @if (Model.Tag != null)
+                {
 
 
-
+                    foreach (AnInterestingWebSiteName.Models.Tag item in Model.Tag)
+                    {
+                        <label class="oyunDetaylariItem">
+                            @if (i > 0)
+                            {
+                                <label>,</label>
+                            }
+                            @item.Ad
+                        </label>
+                        i++;
+                    }
+                }
+            </div>
         </div>
-
-
     </div>
 
+    <div class="oyunAltDiv">
+        <div class="oyunAltDivFiyat">
+            @Model.Urun.Ad
+            <br />
+            Satın Alın
+            @if (!Model.Kutuphanedemi)
+            {
+                if (Model.Urun.Indirim > 0 && Model.Urun.Fiyat != 0)
+                {
+                    <div class="satinAlinDivIndirim">
+                        <div class="satinAlinDivIndirimFiyat">
+                            -@Model.Urun.Indirim%
+                        </div>
+                        <div style="float:left;">
+                            <div class="indirimsizFiyat">
+                                @Model.Urun.Fiyat
+                            </div>
+                            <div class="indirimliFiyatUrun">
+                                @Model.Urun.IndirimliFiyat
+                            </div>
+                        </div>
+                        <div class="paraBirimiIndirimsiz">
+                            ₺
+                        </div>
+                    </div>
+                }
+                else if (Model.Urun.Indirim == 0 && Model.Urun.Fiyat != 0)
+                {
+
+                    <div class="satinAlinDivIndirimsiz0">
+                        <div class="satinAlinDivIndirimsizFiyat0">
+                            <label class="indirimsizFiyatUrun0">
+                                @Model.Urun.Fiyat
+                            </label>
+                        </div>
+                        <div class="indirimsizParaBirimi">
+                            <label>
+                                ₺
+                            </label>
+                        </div>
+                    </div>
+                }
+                else if (Model.Urun.Fiyat == 0)
+                {
+                    <div style="padding:0;" class="satinAlinDivIndirimsiz0">
+                        <div class="bedava">
+                            Bedava
+                        </div>
+                    </div>
+                }
+
+                if (Model.Urun.Fiyat == 0)
+                {
+                    <a href="@Url.Action("Add", "Pay", new {ID=Model.Urun.ID})">
+                        <div class="satinAlBedava satinAlGradient">
+                            Kütüphaneye Ekle
+                        </div>
+                    </a>
+                }
+                else if (Model.Urun.IndirimliFiyat == 0)
+                {
+                    <a href="@Url.Action("Add", "Pay", new {ID=Model.Urun.ID})">
+                        <div class="satinAlBedava satinAlGradient">
+                            Kütüphaneye Ekle
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <a href="#">
+                        <div class="satinAlPara satinAlGradient">
+                            Satın Al
+                        </div>
+                    </a>
+                }
+            }
+            else
+            {
+                <a href="@Url.Action("Index", "Kutuphane", new {ID=Model.Urun.ID})">
+                    <div style="color: #8EB7ED;padding:5px;" class="satinAlinDivIndirim">
+                        Ürün Zaten Kütüphanede
+                    </div>
+                </a>
+            }
+
+        </div>
+    </div>
 </div>

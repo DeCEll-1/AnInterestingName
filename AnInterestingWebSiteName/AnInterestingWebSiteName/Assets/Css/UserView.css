@@ -19,7 +19,7 @@
 }
 
 .tasiyici {
-    border: 1px solid #5c5c5c;
+    /*border: 1px solid #5c5c5c;*/
     margin-left: auto;
     margin-right: auto;
     width: 930px;
@@ -73,10 +73,8 @@
     width: 280px!important;
     padding: 0px 10px 10px 10px;
     background-color: #293545;
+    word-wrap:break-word!important;
     /*border-bottom: 1px solid #8EB7ED;*/
-}
-
-.overline {
 }
 
 .indirim {
@@ -117,7 +115,7 @@
 }
 
 .listBar {
-    border: 1px solid #5c5c5c;
+    /*border: 1px solid #5c5c5c;*/
     padding:5px;
 }
 
@@ -163,4 +161,18 @@ a{
 
 .searchBar input[type=text]:hover ~ .buyutec {
     visibility:hidden;
+}
+
+.listTags {
+    float: left;
+    background-color: #293545;
+    border: 3px solid #293545;
+    border-radius:5px;
+    margin:3px;
+    position: relative;
+}
+
+.tagLink {
+    position: relative;
+    color: #8EB7ED;
 }

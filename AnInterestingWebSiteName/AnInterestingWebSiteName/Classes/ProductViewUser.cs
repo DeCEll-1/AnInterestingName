@@ -15,5 +15,7 @@ namespace AnInterestingWebSiteName.Classes
         public IEnumerable<Tag> Tag { get; set; }
 
         public IEnumerable<OyunResimleri> OyunResimleri { get; set; }
+
+        public bool Kutuphanedemi{ get; set; }
     }
 }

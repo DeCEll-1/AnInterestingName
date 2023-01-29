@@ -2,12 +2,16 @@
 @{
     ViewBag.Title = "a";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+    AnInterestingWebSiteName.Models.AnInterestingWebSiteName_Model db = new AnInterestingWebSiteName.Models.AnInterestingWebSiteName_Model();
 }
 <div class="form">
     <div class="baslik">
         Ürun Listesi
         <a href="@Url.Action("Create","Urun")" style="margin-left:20px;">Ürün Ekle</a>
 
+        <a href="@Url.Action("Index","Urun",new {a=1})" style="margin-left:20px;">Ekleme Zamanına Göre Sırala</a>
+
+        <a href="@Url.Action("Index","Urun",new {a=0})" style="margin-left:20px;">Alfabeye Göre Sırala</a>
 
         @if (ViewBag.message != null)
         {
@@ -19,9 +23,14 @@
             <tr>
                 <th>@Html.DisplayNameFor(model => model.ID)</th>
                 <th>@Html.DisplayNameFor(model => model.Ad)</th>
+                <th>Yapımcı Adı</th>
+                <th>Yayıncı Adı</th>
                 <th>@Html.DisplayNameFor(model => model.TamResimYolu)</th>
                 <th>@Html.DisplayNameFor(model => model.IkonYolu)</th>
                 <th>@Html.DisplayNameFor(model => model.Aciklama)</th>
+                <th>@Html.DisplayNameFor(model => model.AciklamaAlt1)</th>
+                <th>@Html.DisplayNameFor(model => model.AciklamaAlt2)</th>
+                <th>@Html.DisplayNameFor(model => model.AciklamaAlt3)</th>
                 <th>Seçenekler</th>
                 <th>Sil</th>
             </tr>
@@ -31,18 +40,20 @@
                     <td>@item.ID</td>
                     <td>@item.Ad</td>
 
-                    <td>
+                    <td>@db.Firmas.FirstOrDefault(s=>s.ID==item.Yayinci_ID).Ad</td>
+                    <td>@db.Firmas.FirstOrDefault(s => s.ID == item.Yapimci_ID).Ad</td>
+
+                    <td class="imageTD">
                         <img class="image" src="~/Fotograflar/UrunFotograflari/@item.TamResimYolu" alt="Tam Resim" />
                     </td>
 
-                    <td>
+                    <td class="imageTD"> 
                         <img class="image" src="~/Fotograflar/UrunFotograflari/@item.IkonYolu" alt="İkon" />
                     </td>
 
                     <td>
-                        @if (item.Aciklama == null || item.Aciklama.Length > 50)
+                        @if (item.Aciklama.Length > 50)
                         {
-
                             if (item.Aciklama != null)
                             {
                                 @item.Aciklama.Substring(0, 50);
@@ -54,6 +65,55 @@
                             @item.Aciklama
                         }
                     </td>
+
+                    <td>
+                        @if (item.AciklamaAlt1 == null || item.AciklamaAlt1.Length > 50)
+                        {
+
+                            if (item.AciklamaAlt1 != null)
+                            {
+                                @item.AciklamaAlt1.Substring(0, 50);
+                            }
+                            <label>...</label>
+                        }
+                        else
+                        {
+                            @item.AciklamaAlt1
+                        }
+                    </td>
+
+                    <td>
+                        @if (item.AciklamaAlt2 == null || item.AciklamaAlt2.Length > 50)
+                        {
+
+                            if (item.AciklamaAlt2 != null)
+                            {
+                                @item.AciklamaAlt2.Substring(0, 50);
+                            }
+                            <label>...</label>
+                        }
+                        else
+                        {
+                            @item.AciklamaAlt2
+                        }
+                    </td>
+
+                    <td>
+                        @if (item.AciklamaAlt3 == null || item.AciklamaAlt3.Length > 50)
+                        {
+
+                            if (item.AciklamaAlt3 != null)
+                            {
+                                @item.AciklamaAlt3.Substring(0, 50);
+                            }
+                            <label>...</label>
+                        }
+                        else
+                        {
+                            @item.AciklamaAlt3
+                        }
+                    </td>
+
                     <td style="text-align: center;">
                         <a href="@Url.Action("Edit","Urun",new {ID = item.ID})">Düzenle</a>
                         <br />

@@ -28,16 +28,15 @@
 
     <div class="leftBar">
         <div class="kullaniciBar">
-            <a href="@Url.Action("Edit","AnaMenu")">Profil</a>
+            <a href="@Url.Action("Index","AnaMenu")">Profil</a>
             <img class="profilFotografi" src="~/Fotograflar/KullaniciFotograflari/@y.ProfilFotografi" alt="Profil Fotoğrafı" />
             <br />
-            <a href="#">>   Ayarlar</a>
+            <a href="@Url.Action("Edit","AnaMenu")">>   Ayarlar</a>
             <br />
             <a style="color: #C5F19F" href="@Url.Action("LogOut","Login")">>    Çıkış</a>
         </div>
         <div class="menuBar">
             <ul>
-
                 <!-- #region Urun-->
                 <a href="@Url.Action("Index","Urun")">
                 <li style="color:#C5F19F">Urunler</li></a>
@@ -48,7 +47,18 @@
                 <a href="@Url.Action("Create","Urun")">
                 <li>> &nbsp;&nbsp;&nbsp;Urun Ekle</li></a>
                 <!-- #endregion -->
+                <!-- #region Firma-->
 
+                <a href="@Url.Action("Index","Firma")">
+                <li style="color:#C5F19F">Firmalar</li></a>
+
+                <a href="@Url.Action("Index","Firma")">
+                <li>> &nbsp;&nbsp;&nbsp;Firma Listesi</li></a>
+
+                <a href="@Url.Action("Create","Firma")">
+                <li>> &nbsp;&nbsp;&nbsp;Firma Ekle</li></a>
+
+                <!-- #endregion -->
                 <!-- #region Fotoğraf Yolları -->
 
                 <a href="@Url.Action("Index","OyunFotograf")">
@@ -57,7 +67,6 @@
                 <a href="@Url.Action("Create","OyunFotograf")">
                 <li>> &nbsp;&nbsp;&nbsp;Fotoğraf Ekle</li></a>
                 <!-- #endregion -->
-
                 <!-- #region Tags -->
                 <a href="@Url.Action("Index","Tag")">
                 <li style="color:#C5F19F">Etiketler</li></a>

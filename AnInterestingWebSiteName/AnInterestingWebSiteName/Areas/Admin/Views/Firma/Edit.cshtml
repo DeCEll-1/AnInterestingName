@@ -1,0 +1,58 @@
+﻿@model AnInterestingWebSiteName.Models.Firma
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
+}
+
+<div class="form">
+    <div class="baslik">
+        @Model.Ad'ı Düzenle
+        <a href="@Url.Action("Index","Firma")" style="margin-left:20px;">Firma Listesi</a>
+
+        @if (ViewBag.message != null)
+        {
+            <label>@ViewBag.message</label>
+        }
+    </div>
+
+   
+    <div class="objectsItems">
+        @using (Html.BeginForm("Edit", "Firma", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.Ad):
+                <br />
+                @Html.EditorFor(model => model.Ad)
+                <br />
+                @Html.ValidationMessageFor(model => model.Ad)
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.FirmaResmi):
+                <br />
+                <input type="file" name="firmaResmi" value="" class="dosyaYukle" /><small>Resim Kare Olmalıdır</small>
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.FirmaArkaPlanResmi)
+                <br />
+                <input type="file" name="firmaArkaPlanResmi" value="" class="dosyaYukle" />
+            </div>
+
+            <div class="objectsItem">
+                @Html.LabelFor(model => model.Mail):
+                <br />
+                @Html.EditorFor(model => model.Mail)
+                <br />
+                @Html.ValidationMessageFor(model => model.Mail)
+            </div>
+
+            <div class="objectsItem">
+                <input type="submit" name="submit" value="Firma Ekle" />
+            </div>
+        }
+
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿@model AnInterestingWebSiteName.Classes.KutuphaneModelClass
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_UserLayoutPage.cshtml";
+}
+<head>
+    <link href="~/Assets/Css/KutuphaneCss.css" rel="stylesheet" />
+</head>
+
+
+<div class="maink">
+
+    <div class="list">
+        <a href="@Url.Action("Index","Kutuphane",new {ID =0})">
+            <div class="listItem" style="border-bottom: 2px solid #637a9b; height: 24px;">
+                <label class="Ad">
+                    Kütüphane
+                </label>
+            </div>
+        </a>
+
+        @foreach (var item in Model.Urunler)
+        {
+            if (Model.Urun != null)
+            {
+
+                if (Model.Urun.ID == item.ID)
+                {
+                    <div style="border-bottom: 2px solid #637a9b; height: 24px; " class="listItem">
+                        <img class="firmaFotograf" src="~/Fotograflar/FirmaFotograflari/@Model.Firma.FirstOrDefault(s => s.ID == item.Yayinci_ID).FirmaResmi" alt="Alternate Text" />
+                        <label class="Ad">
+                            @item.Ad
+                        </label>
+                    </div>
+                }
+                else
+                {
+                    <a href="@Url.Action("Index","Kutuphane",new {ID =item.ID})">
+                        <div class="listItem">
+                            <img class="firmaFotograf" src="~/Fotograflar/FirmaFotograflari/@Model.Firma.FirstOrDefault(s => s.ID == item.Yayinci_ID).FirmaResmi" alt="Alternate Text" />
+                            <label class="Ad">
+                                @item.Ad
+                            </label>
+                        </div>
+                    </a>
+                }
+            }
+            else
+            {
+                <a href="@Url.Action("Index","Kutuphane",new {ID =item.ID})">
+                    <div class="listItem">
+                        <img class="firmaFotograf" src="~/Fotograflar/FirmaFotograflari/@Model.Firma.FirstOrDefault(s => s.ID == item.Yayinci_ID).FirmaResmi" alt="Alternate Text" />
+                        <label class="Ad">
+                            @item.Ad
+                        </label>
+                    </div>
+                </a>
+            }
+        }
+    </div>
+    <div class="sagList">
+        @if (Model.Urun != null)
+        {
+            <div class="urun">
+                <img class="oyunArkaPlanImage" src="~/Fotograflar/UrunFotograflari/@Model.Urun.ArkaPlanResmi" alt="Arka Plan" />
+                <img class="oyunArkaPlanImage imageBlur" src="~/Fotograflar/UrunFotograflari/@Model.Urun.ArkaPlanResmi" alt="Arka Plan" />
+                <div class="blurGradient"></div>
+                <div style="z-index:899;position:relative;">
+
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="placeHolder">
+                @foreach (AnInterestingWebSiteName.Models.Urunler item in Model.Urunler)
+                {
+                    <a href="@Url.Action("Index", "Kutuphane", new {ID=item.ID})">
+                        <div class="placeHolderItem">
+                            <img class="kutuphaneImage" src="~/Fotograflar/UrunFotograflari/@item.TamResimYolu" alt="Ürün Fotoğrafı" />
+                            <br />
+                            <div class="urunInfo">
+                                <label>
+                                    @item.Ad
+                                </label>
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+    </div>
+
+
+
+</div>

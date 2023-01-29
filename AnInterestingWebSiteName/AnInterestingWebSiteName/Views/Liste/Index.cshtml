@@ -4,17 +4,17 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_UserLayoutPage.cshtml";
 }
-
+<head>
+    <link href="~/Assets/Css/UserView.css" rel="stylesheet" />
+</head>
 
 <div class="tasiyici">
     <div class="listBar">
-        <a href="#">
-            <div style="text-decoration: underline; text-decoration-color: #7ECBD3;" class="listBarItems">
-                <label style="cursor:pointer;">Etiket Seçimi Ekranı</label>
-            </div>
-        </a>
-
-
+        @*<a href="#">
+                <div style="text-decoration: underline; text-decoration-color: #7ECBD3;" class="listBarItems">
+                    <label style="cursor:pointer;">Etiket Seçimi Ekranı</label>
+                </div>
+            </a>*@
         <div class="searchBar listBarItems">
             @using (Html.BeginForm())
             {
@@ -26,7 +26,7 @@
     </div>
     <div class="list">
 
-        @if (Model != null)
+        @if (Model.Urunler != null)
         {
 
             foreach (var item in Model.Urunler)
@@ -57,6 +57,10 @@
                                         {
                                             <label class="indirimliFiyat">@item.IndirimliFiyat</label>
                                         }
+                                    }
+                                    else if (item.Fiyat==0)
+                                    {
+                                <label class="indirimliFiyat">Bedava</label>
                                     }
                                     else
                                     {
@@ -89,19 +93,7 @@
                                 </div>
 
                                 <div class="hoverItem">
-                                    @if (item.Aciklama == null || item.Aciklama.Length > 50)
-                                    {
-
-                                        if (item.Aciklama != null)
-                                        {
-                                            @item.Aciklama.Substring(0, 200);
-                                        }
-                                        <label>...</label>
-                                    }
-                                    else
-                                    {
-                                        @item.Aciklama
-                                    }
+                                    @item.Aciklama
                                 </div>
 
                                 <div class="hoverItem">

@@ -13,17 +13,25 @@ namespace AnInterestingWebSiteName.Models
         {
         }
 
-        public virtual DbSet<Urunler> Urunlers { get; set; }
+        public virtual DbSet<YoneticiTur> YoneticiTurs { get; set; }
 
         public virtual DbSet<Yonetici> Yoneticis { get; set; }
 
-        public virtual DbSet<YoneticiTur> YoneticiTurs { get; set; }
-
         public virtual DbSet<OyunResimleri> OyunResimleris{ get; set; }
 
-        public virtual DbSet<Tag> Tags{ get; set; }
+        public virtual DbSet<Urunler> Urunlers { get; set; }
 
-        public virtual DbSet<TagsVeUrunAraClass> TagsVeUrunAraClasses{ get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
+
+        public virtual DbSet<TagsVeUrunAraClass> TagsVeUrunAraClasses { get; set; }
+
+        public virtual DbSet<Firma> Firmas { get; set; }
+
+        public virtual DbSet<Kullanici> Kullanicis{ get; set; }
+
+        public virtual DbSet<Kutuphane> Kutuphanes{ get; set; }
+
+
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

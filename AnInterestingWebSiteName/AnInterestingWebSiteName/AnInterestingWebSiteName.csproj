@@ -112,6 +112,8 @@
   <ItemGroup>
     <Content Include="Areas\Admin\Assets\CSS\LayoutPageCss.css" />
     <Content Include="Areas\Admin\Assets\CSS\LoginCSS.css" />
+    <Content Include="Assets\Css\KutuphaneCss.css" />
+    <Content Include="Assets\Css\Logincss.css" />
     <Content Include="Assets\Css\RenkPaleti.css" />
     <Content Include="Areas\Admin\Assets\CSS\ViewCss.css" />
     <Content Include="Assets\Css\LayoutPageCss.css" />
@@ -130,7 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AnaMenuController.cs" />
-    <Compile Include="Areas\Admin\Controllers\KategoriController.cs" />
+    <Compile Include="Areas\Admin\Controllers\FirmaController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OyunFotografController.cs" />
     <Compile Include="Areas\Admin\Controllers\TagController.cs" />
@@ -138,16 +140,25 @@
     <Compile Include="Areas\Admin\Controllers\YetkiYetersizController.cs" />
     <Compile Include="Areas\Admin\Filtre\AdminAuthenticationFilterAttribute.cs" />
     <Compile Include="Areas\Admin\Filtre\ModeratorAuthenticationFilterAttribute.cs" />
+    <Compile Include="Classes\KutuphaneModelClass.cs" />
     <Compile Include="Classes\MagazaList.cs" />
     <Compile Include="Classes\ProductViewUser.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KutuphaneController.cs" />
     <Compile Include="Controllers\ListeController.cs" />
+    <Compile Include="Controllers\PayController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserLoginController.cs" />
     <Compile Include="Controllers\UserUrunController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AnInterestingWebSiteName_Model.cs" />
+    <Compile Include="Models\Firma.cs" />
+    <Compile Include="Models\FirmaVeUrunAraClass.cs" />
+    <Compile Include="Models\Kullanici.cs" />
+    <Compile Include="Models\Kutuphane.cs" />
     <Compile Include="Models\OyunResimleri.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Models\TagsVeUrunAraClass.cs" />
@@ -175,11 +186,17 @@
     <Content Include="Areas\Admin\Views\Tag\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\UrunTagCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Tag\UrunIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\Firma\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Firma\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Firma\Edit.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Shared\_UserLayoutPage.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Liste\Index.cshtml" />
     <Content Include="Views\UserUrun\Index.cshtml" />
+    <Content Include="Views\UserLogin\Index.cshtml" />
+    <Content Include="Views\Liste\TagIndex.cshtml" />
+    <Content Include="Views\Kutuphane\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -191,6 +208,9 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Assets\Fotograflar\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Fotograflar\FirmaFotograflari\" />
+    <Folder Include="Views\Pay\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

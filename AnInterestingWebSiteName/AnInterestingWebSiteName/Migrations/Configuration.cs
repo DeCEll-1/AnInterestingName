@@ -18,17 +18,16 @@
 
         protected override void Seed(AnInterestingWebSiteName.Models.AnInterestingWebSiteName_Model context)
         {
-
-
-
             try
             {
                 context.YoneticiTurs.AddOrUpdate(y => y.ID, new Models.YoneticiTur() { ID = 1, Yetki = 1, Ad = "Admin" });
                 context.YoneticiTurs.AddOrUpdate(y => y.ID, new Models.YoneticiTur() { ID = 2, Yetki = 2, Ad = "Moderatör" });
 
-                context.Yoneticis.AddOrUpdate(y => y.ID, new Models.Yonetici() { ID = 1, YoneticiTur_ID = 1, Isim = "Arda", SoyIsim = "Eren", KullaniciAdi = "DeCell", ProfilFotografi = "Smile.png", Sifre = "123456789", Mail = "Poedx2@gmail.com", Aktif = true });
+                context.Yoneticis.AddOrUpdate(y => y.ID, new Models.Yonetici() { ID = 1, YoneticiTur_ID = 1, Isim = "Arda", SoyIsim = "Eren", KullaniciAdi = "DeCell", ProfilFotografi = "dram.gif", Sifre = "123456789", Mail = "Poedx2@gmail.com", Aktif = true });
 
-                context.Yoneticis.AddOrUpdate(y => y.ID, new Models.Yonetici() { ID = 2, YoneticiTur_ID = 2, Isim = "Ardaa", SoyIsim = "Erena", KullaniciAdi = "DeCella", ProfilFotografi = "Smile.png", Sifre = "123456789", Mail = "Poedx4@gmail.com", Aktif = true });
+                context.Yoneticis.AddOrUpdate(y => y.ID, new Models.Yonetici() { ID = 2, YoneticiTur_ID = 2, Isim = "Ardaa", SoyIsim = "Erena", KullaniciAdi = "DeCella", ProfilFotografi = "dram.gif", Sifre = "123456789", Mail = "Poedx4@gmail.com", Aktif = true });
+
+                context.Kullanicis.AddOrUpdate(k => k.ID, new Models.Kullanici() { ID = 2, Ad = "DeCell", Mail = "poedx2@gmail.com", Sifre = "123456789", ProfilResmi = "erdoganium.png" });
 
                 context.SaveChanges();
             }

@@ -32,7 +32,8 @@ a {
 .body {
     float: left;
     margin: 45px 0px 0px 0px;
-    width:70%;
+    min-width:70%;
+    max-width:78%;
 }
 
 .kullaniciBar {
@@ -91,6 +92,18 @@ a {
 
 .profilFotografi{
     float:right;
-    height:44px;
-    margin:3px;
+    height:54px;
+    width:54px;
+    margin:3px 5px 5px 180px;
+    position:absolute;
+    border-radius:1000px;
+    border:3px solid #00000000;
+
+}
+
+.profilFotografi:hover{
+    height:max-content;
+    width:max-content;
+    position:absolute;
+    z-index:999;
 }

@@ -41,18 +41,36 @@
             padding: 5px;
             margin: 2px;
             border: 1px solid #2F4C4F;
+            min-height: 71px;
         }
 
         .table tr td {
             border: 1px solid #2F4C4F;
+            min-height: 71px;
             padding: 5px;
             margin: 2px;
+            word-wrap: break-word;
+            max-width: 100px;
         }
+
+.imageTD{
+    max-width:100px;
+    min-width:100px;
+}
 
 .image {
     height: 71px;
-    width: auto;
+    width: 100px;
 }
+
+    .image:hover {
+        width: max-content !important;
+        height: max-content !important;
+        z-index: 999;
+        position: absolute;
+        margin-top: -37px;
+    }
+
 
 .table tr td a {
     color: #7DC2A6;

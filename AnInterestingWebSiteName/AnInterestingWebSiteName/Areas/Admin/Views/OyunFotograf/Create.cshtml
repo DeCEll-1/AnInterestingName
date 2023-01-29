@@ -8,6 +8,17 @@
 <div class="form">
     <div class="baslik">
         Oyuna Fotoğraf Ekle
+        <div style="margin-left:20px;">
+            @if (ViewBag.urun != null)
+            {
+                <a href="@Url.Action("Index",new {ID = ViewBag.urun.ID})">Fotoğraf Listesine</a>
+            }
+            else
+            {
+                <a href="@Url.Action("Index","Urun")">Ürünlerin Listesi</a>
+            }
+        </div>
+
         @if (ViewBag.message != null)
         {
             <label>@ViewBag.message</label>
@@ -47,18 +58,7 @@
             </div>
         }
 
-        @if (ViewBag.urun != null)
-        {
-            <div class="objectsItem">
-                <a href="@Url.Action("Index",new {ID = ViewBag.urun.ID})">Fotoğraf Listesine</a>
-            </div>
-        }
-        else
-        {
-            <div class="objectsItem">
-                <a href="@Url.Action("Index","Urun")">Ürünlerin Listesi</a>
-            </div>
-        }
+
 
 
     </div>

@@ -25,11 +25,11 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         {
 
 
-            if (Session["adminSession"]==null)
+            if (Session["adminSession"] == null)
             {
                 ViewBag.message = "Bir hata oluştu lütfen tekrar giriş yapıp tekrar deneyiniz";
 
-                return RedirectToAction("Index","Login");
+                return RedirectToAction("Index", "Login");
             }
             Yonetici model = (Yonetici)Session["adminSession"];
 
@@ -40,21 +40,27 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Yonetici model,HttpPostedFileBase pfp,string pfpcb)
+        public ActionResult Edit(Yonetici model, HttpPostedFileBase pfp, string pfpcb)
         {
             ViewBag.YoneticiTur_ID = new SelectList(db.YoneticiTurs.ToList(), "ID", "Ad");
 
             try
             {
 
-                if (pfpcb !=null)
+                if (pfpcb != null)
                 {
+                    FileInfo fidpfp = new FileInfo(Server.MapPath($"~/Fotograflar/KullaniciFotograflari/{db.Yoneticis.Find(model.ID).ProfilFotografi}"));
+                    fidpfp.Delete();
                     model.ProfilFotografi = "Smile.png";
                 }
                 else if (pfp != null)
                 {
-                    FileInfo fidpfp = new FileInfo(Server.MapPath($"~/Fotograflar/KullaniciFotograflari/{db.Yoneticis.Find(model.ID).ProfilFotografi}"));
-                    fidpfp.Delete();
+                    if (!(db.Yoneticis.Find(model.ID).ProfilFotografi == "Smile.png"))
+                    {
+                        FileInfo fidpfp = new FileInfo(Server.MapPath($"~/Fotograflar/KullaniciFotograflari/{db.Yoneticis.Find(model.ID).ProfilFotografi}"));
+                        fidpfp.Delete();
+                    }
+
 
                     FileInfo fipfp = new FileInfo(pfp.FileName);
                     string namepfp = Guid.NewGuid().ToString() + fipfp.Extension;
@@ -66,14 +72,24 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                     model.ProfilFotografi = db.Yoneticis.Find(model.ID).ProfilFotografi;
                 }
 
-                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                AnInterestingWebSiteName_Model dbe = new AnInterestingWebSiteName_Model();
+
+                model.Aktif = true;
+
+                dbe.Entry(model).State = System.Data.Entity.EntityState.Modified;
+                dbe.SaveChanges();
                 ViewBag.message = "Düzenleme Başarılı";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+
+                ViewBag.message = "Düzenleme Başarısız\nHata:" + ex.Message;
+
             }
 
+            model.YoneticiTur = db.YoneticiTurs.FirstOrDefault(s => s.ID == model.YoneticiTur_ID);
+
+            Session["adminSession"] = model;
 
             return View(model);
         }

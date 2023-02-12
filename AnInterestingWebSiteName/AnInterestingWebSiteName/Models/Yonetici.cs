@@ -8,6 +8,7 @@ using System.Xml.Linq;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class Yonetici
     {
         public int ID { get; set; }
@@ -44,7 +45,7 @@ namespace AnInterestingWebSiteName.Models
         [StringLength(255, ErrorMessage = "Bu Alan En Fazla 255 Karakter Olabilir")]
         public string Mail { get; set; }
 
-        public bool Aktif { get; set; }
+        public bool Aktifmi { get; set; }
 
     }
 }

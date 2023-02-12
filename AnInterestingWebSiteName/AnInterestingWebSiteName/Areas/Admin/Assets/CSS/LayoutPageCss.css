@@ -17,6 +17,7 @@ a {
     min-height: 45px;
     background-color: #243830 /*açık yeşil bg*/;
     position: fixed;
+    z-index:99999999;
     text-align:center;
 }
 
@@ -97,7 +98,7 @@ a {
     margin:3px 5px 5px 180px;
     position:absolute;
     border-radius:1000px;
-    border:3px solid #00000000;
+    border:1px solid #00000000;
 
 }
 

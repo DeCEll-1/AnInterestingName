@@ -1,12 +1,12 @@
 ﻿.urunTasiyici {
-    border: 1px solid #5c5c5c;
+    /*border: 1px solid #5c5c5c;*/
     margin-left: auto;
     margin-right: auto;
     width: 942px;
 }
 
 .topDiv {
-    border: 1px solid #5c5c5c;
+    /*border: 1px solid #5c5c5c;*/
     min-height: 444px;
     width: 940px;
 }
@@ -73,18 +73,18 @@
     }
 
 
-    .tableOyunView :hover td {
+    .tableOyunView:hover td {
         visibility: visible;
     }
 
 .oyunBilgisi {
-    width: 280px !important;
+    width: 270px !important;
     border: 1px solid #293545;
     padding: 10px 10px 10px 10px;
     background-color: #293545;
     /*border-bottom: 1px solid #8EB7ED;*/
     height: 422px;
-    float: left;
+    float: right;
 }
 
 .oyunBilgisiFotografi {
@@ -106,7 +106,7 @@ a {
 
 .oyunAltDiv {
     width: 100%;
-    border: 1px solid #5c5c5c5c;
+    /*border: 1px solid #5c5c5c5c;*/
     margin-top: 30px;
 }
 
@@ -204,7 +204,7 @@ a {
 
 .bedava {
     padding: 2px;
-    border-radius:3px;
+    border-radius: 3px;
     border: 1px solid #4c6b22;
     color: #BEEE11;
     background-color: #4c6b22;
@@ -228,17 +228,80 @@ a {
     margin-left: 750px;
     font-size: 15pt;
     position: absolute;
-    color: #BEEE11
+    color: #BEEE11;
 }
 
 .satinAlPara {
     padding: 5px;
     border: 2px solid black;
     border-radius: 3px;
-    padding:18px 5px;
+    padding: 18px 5px;
     margin-top: -10px;
     margin-left: 750px;
     font-size: 15pt;
     position: absolute;
     color: #BEEE11
+}
+
+.altPart {
+    margin-top: 70px;
+}
+
+.aciklama {
+}
+
+.aciklama1 {
+    padding: 5px 20px 40px 0px;
+}
+
+.solPart {
+    padding: 5px 20px 40px 15px;
+    color: #b3cdef;
+    background-color: #2935455e;
+    width: 60%;
+    float: left;
+}
+
+.sagPart {
+    color: #8EB7ED;
+    padding: 20px;
+    width: 32%;
+    float: right;
+}
+
+.yayinciBilgileri {
+    padding: 10px;
+    background-color: #293545;
+}
+
+.yapimciBilgileri {
+    padding: 10px;
+}
+
+.ayniFirmaninOyunlari {
+    border: 1px solid #5c5c5c;
+}
+
+.ayniFirmaninOyunlariItems {
+    background-color: #293545;
+    padding: 5px;
+    width: 160px;
+    height: 100px;
+}
+
+    .ayniFirmaninOyunlariItems:hover {
+        background-color: #202935;
+    }
+
+    .ayniFirmaninOyunlariItems img {
+        height: 60px;
+        width: 160px;
+    }
+
+.ayniFirmaninOyunlariItemsInfo {
+}
+
+.ayniFirmaninOyunlariItemsInfoAd {
+    float: left;
+    color: #8EB7ED;
 }

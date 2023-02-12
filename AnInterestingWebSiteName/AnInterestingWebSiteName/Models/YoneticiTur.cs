@@ -6,6 +6,7 @@ using System.Web;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class YoneticiTur
     {
 
@@ -16,9 +17,6 @@ namespace AnInterestingWebSiteName.Models
         public string Ad { get; set; }
 
         public int Yetki { get; set; }//1 > 2 > 3 .....
-
-        public virtual IEnumerable<Yonetici> Yoneticis { get; set; }
-
 
     }
 }

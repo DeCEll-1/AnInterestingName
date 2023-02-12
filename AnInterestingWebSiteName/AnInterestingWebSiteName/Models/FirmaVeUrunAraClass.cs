@@ -5,6 +5,7 @@ using System.Web;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class FirmaVeUrunAraClass
     {
         public int ID { get; set; }

@@ -4,6 +4,11 @@
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayoutPage.cshtml";
 }
 
+<head>
+    <script src="@Url.Content("~/ckeditor/ckeditor.js")" type="text/javascript"></script>
+</head>
+
+
 <div class="form">
     <div class="baslik">
         Urun Ekle
@@ -46,6 +51,11 @@
                 @Html.LabelFor(model => model.Aciklama):
                 <br />
                 @Html.EditorFor(model => model.Aciklama)
+                <script>
+                    CKEDITOR.replace('Aciklama', {
+                        customConfig: '/Areas/Admin/Assets/CKEditorConfig/AdminCKEditor_config.js'
+                    });
+                </script>
                 <br />
                 @Html.ValidationMessageFor(model => model.Aciklama)
             </div>
@@ -54,6 +64,11 @@
                 @Html.LabelFor(model => model.AciklamaAlt1):
                 <br />
                 @Html.EditorFor(model => model.AciklamaAlt1)
+                <script>
+                    CKEDITOR.replace('AciklamaAlt1', {
+                        customConfig: '/Areas/Admin/Assets/CKEditorConfig/AdminCKEditor_config.js'
+                    });
+                </script>
                 <br />
                 @Html.ValidationMessageFor(model => model.AciklamaAlt1)
             </div>
@@ -62,6 +77,11 @@
                 @Html.LabelFor(model => model.AciklamaAlt2):
                 <br />
                 @Html.EditorFor(model => model.AciklamaAlt2)
+                <script>
+                    CKEDITOR.replace('AciklamaAlt2', {
+                        customConfig: '/Areas/Admin/Assets/CKEditorConfig/AdminCKEditor_config.js'
+                    });
+                </script>
                 <br />
                 @Html.ValidationMessageFor(model => model.AciklamaAlt2)
             </div>
@@ -70,6 +90,11 @@
                 @Html.LabelFor(model => model.AciklamaAlt3):
                 <br />
                 @Html.EditorFor(model => model.AciklamaAlt3)
+                <script>
+                    CKEDITOR.replace('AciklamaAlt3', {
+                        customConfig: '/Areas/Admin/Assets/CKEditorConfig/AdminCKEditor_config.js'
+                    });
+                </script>
                 <br />
                 @Html.ValidationMessageFor(model => model.AciklamaAlt3)
             </div>

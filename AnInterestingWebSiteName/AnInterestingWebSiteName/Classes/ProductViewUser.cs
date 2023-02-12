@@ -16,6 +16,8 @@ namespace AnInterestingWebSiteName.Classes
 
         public IEnumerable<OyunResimleri> OyunResimleri { get; set; }
 
+        public IEnumerable<Urunler> Urunler { get; set; }
+
         public bool Kutuphanedemi{ get; set; }
     }
 }

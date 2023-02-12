@@ -7,6 +7,7 @@ using System.Web.UI.WebControls.WebParts;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class Kullanici
     {
         public int ID { get; set; }
@@ -26,9 +27,14 @@ namespace AnInterestingWebSiteName.Models
         [StringLength(128,MinimumLength =7)]
         public string Mail { get; set; }
 
+        [Display(Name ="Açıklama")]
+        [DataType(DataType.MultilineText)]
+        [StringLength(4096)]
+        public string Aciklama { get; set; }
+
         [Display(Name ="Profil Fotoğrafı")]
         public string ProfilResmi { get; set; }
 
-
+        public bool Aktifmi { get; set; }
     }
 }

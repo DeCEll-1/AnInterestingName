@@ -53,9 +53,9 @@
             max-width: 100px;
         }
 
-.imageTD{
-    max-width:100px;
-    min-width:100px;
+.imageTD {
+    max-width: 100px;
+    min-width: 100px;
 }
 
 .image {
@@ -66,6 +66,8 @@
     .image:hover {
         width: max-content !important;
         height: max-content !important;
+        max-width: 600px;
+        max-height: 600px;
         z-index: 999;
         position: absolute;
         margin-top: -37px;
@@ -117,7 +119,14 @@
     display: none;
 }
 
-
+.CKEditor {
+    background-color: #293545;
+    border-color: #7ECBD3;
+    color: #8EB7ED;
+    width: 100%;
+    min-height: 18px;
+    outline: none;
+}
 
 .dropDown {
     background-color: #293545;

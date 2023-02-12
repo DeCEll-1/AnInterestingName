@@ -22,6 +22,7 @@
             <tr>
                 <th>@Html.DisplayNameFor(model=>model.ID)</th>
                 <th>@Html.DisplayNameFor(model=>model.Ad)</th>
+                <th>@Html.DisplayNameFor(model=>model.FirmaHakkinda)</th>
                 <th>@Html.DisplayNameFor(model=>model.FirmaResmi)</th>
                 <th>@Html.DisplayNameFor(model=>model.FirmaArkaPlanResmi)</th>
                 <th>@Html.DisplayNameFor(model=>model.Mail)</th>
@@ -35,7 +36,22 @@
                     <td>@item.ID</td>
                     <td>@item.Ad</td>
                     <td>
-                        <img src="~/Fotograflar/FirmaFotograflari/@item.FirmaResmi" alt="Firma Profil Resmi" style="width:71px"  class="image"/>
+                        @if (item.FirmaHakkinda == null || item.FirmaHakkinda.Length > 50)
+                        {
+
+                            if (item.FirmaHakkinda != null)
+                            {
+                                @Html.Raw(item.FirmaHakkinda).ToString().Substring(0, 50);
+                            }
+                            <label>...</label>
+                        }
+                        else
+                        {
+                            @Html.Raw(item.FirmaHakkinda)
+                        }
+                    </td>
+                    <td>
+                        <img src="~/Fotograflar/FirmaFotograflari/@item.FirmaResmi" alt="Firma Profil Resmi" style="width:71px" class="image" />
                     </td>
                     <td>
                         <img src="~/Fotograflar/FirmaFotograflari/@item.FirmaArkaPlanResmi" alt="Firma Arka Plan Resmi" class="image" />

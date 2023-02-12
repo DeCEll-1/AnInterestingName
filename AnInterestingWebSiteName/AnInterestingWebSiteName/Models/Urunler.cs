@@ -9,6 +9,7 @@ using System.Web;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class Urunler
     {
 
@@ -33,23 +34,20 @@ namespace AnInterestingWebSiteName.Models
         [DataType(DataType.MultilineText)]
         [Display(Name = "Ürün Açıklaması")]
         [Required(ErrorMessage = "Lütfen Bu Alanı Doldurunuz")]
-        [StringLength(256)]
+        [StringLength(1024)]
         public string Aciklama { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "Ürün Altdaki İlk Açıklaması")]
         [Required(ErrorMessage = "Lütfen Bu Alanı Doldurunuz")]
-        [StringLength(2048)]
         public string AciklamaAlt1 { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "Ürün Altdaki İkinci Açıklaması")]
-        [StringLength(maximumLength: 2048)]
         public string AciklamaAlt2 { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Display(Name = "Ürün Altdaki Üçüncü Açıklaması")]
-        [StringLength(maximumLength: 2048)]
         public string AciklamaAlt3 { get; set; }
 
         [Display(Name = "Ürünün Fiyatı")]
@@ -64,7 +62,7 @@ namespace AnInterestingWebSiteName.Models
         public double? IndirimliFiyat { get; set; }
 
         [Required(ErrorMessage = "Lütfen Fotoğraf Giriniz")]
-        [Display(Name = "İkon")]
+        [Display(Name = "Logo")]
         [StringLength(155)]
         public string IkonYolu { get; set; }
 

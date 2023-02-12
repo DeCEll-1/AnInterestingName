@@ -16,7 +16,7 @@ namespace AnInterestingWebSiteName.Controllers
         public ActionResult Index(int? id)
         {
 
-            if (id == null || db.Urunlers.Find(id).Aktifmi == false||db.Urunlers.Find(id)==null)
+            if (id == null || db.Urunlers.Find(id).Aktifmi == false || db.Urunlers.Find(id) == null)
             {
                 TempData["message"] = "Ürün Bulunamadı";
                 return RedirectToAction("Index", "Liste");
@@ -24,10 +24,10 @@ namespace AnInterestingWebSiteName.Controllers
 
             ProductViewUser pvu = new ProductViewUser();
 
-            if (Session["userSession"]!=null)
+            if (Session["userSession"] != null)
             {
                 Kullanici k = (Kullanici)Session["userSession"];
-                if (db.Kutuphanes.Count(s => s.Kullanici_ID == k.ID && s.Oyun_ID == id)>0)
+                if (db.Kutuphanes.Count(s => s.Kullanici_ID == k.ID && s.Oyun_ID == id) > 0)
                 {
                     pvu.Kutuphanedemi = true;
                 }
@@ -48,14 +48,14 @@ namespace AnInterestingWebSiteName.Controllers
 
             bool a = true;
 
-            foreach (var item in db.TagsVeUrunAraClasses.ToList().Where(s=>s.Urun_ID==pvu.Urun.ID))
+            foreach (var item in db.TagsVeUrunAraClasses.ToList().Where(s => s.Urun_ID == pvu.Urun.ID))
             {
 
                 if (a)
                 {
                     List<Tag> gecicit = new List<Tag>();
 
-                    gecicit.Add(db.Tags.FirstOrDefault(s=>s.ID==item.Tag_ID));
+                    gecicit.Add(db.Tags.FirstOrDefault(s => s.ID == item.Tag_ID));
 
                     pvu.Tag = gecicit;
 
@@ -71,10 +71,32 @@ namespace AnInterestingWebSiteName.Controllers
                 }
             }
 
+            if (pvu.Urun.Yayinci_ID == pvu.Urun.Yapimci_ID)
+            {
+                foreach (var item in db.Urunlers.ToList().Where(s => s.Aktifmi == true && s.Yapimci_ID == pvu.Urun.Yapimci_ID))
+                {
+
+                    if (pvu.Urunler == null)
+                    {
+                        List<Urunler> geciciu = new List<Urunler>();
+
+                        geciciu.Add(item);
+
+                        pvu.Urunler = geciciu;
+                    }
+                    else
+                    {
+                        List<Urunler> geciciu = (List<Urunler>)pvu.Urunler;
+
+                        geciciu.Add(item);
+
+                        pvu.Urunler = geciciu;
+                    }
+                }
+            }
 
 
-
-            pvu.OyunResimleri = db.OyunResimleris.ToList().Where(s=>s.Oyun_ID==pvu.Urun.ID);
+            pvu.OyunResimleri = db.OyunResimleris.ToList().Where(s => s.Oyun_ID == pvu.Urun.ID);
 
             return View(pvu);
         }

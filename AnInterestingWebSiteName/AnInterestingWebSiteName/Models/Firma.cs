@@ -7,6 +7,7 @@ using System.Xml.Linq;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class Firma
     {
 
@@ -16,6 +17,11 @@ namespace AnInterestingWebSiteName.Models
         [Required(ErrorMessage = "Bu Alan Boş Bırakılamaz")]
         [MaxLength(256, ErrorMessage = "Bu Alan En Fazla 256 Karakter Olabilir")]
         public string Ad { get; set; }
+
+        [DataType(DataType.MultilineText)]
+        [Display(Name ="Firma Hakkında")]
+        [Required(ErrorMessage ="Bu Alan Boş Bırakılamaz")]
+        public string FirmaHakkinda { get; set; }
 
         [Required]
         [Display(Name ="Firmanın Profil Resmi")]

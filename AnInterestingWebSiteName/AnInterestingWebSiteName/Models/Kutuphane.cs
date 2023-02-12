@@ -6,6 +6,7 @@ using System.Web;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class Kutuphane
     {
         public int ID { get; set; }

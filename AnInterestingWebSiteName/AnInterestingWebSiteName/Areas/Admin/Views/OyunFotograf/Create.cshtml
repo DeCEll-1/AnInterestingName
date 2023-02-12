@@ -7,8 +7,10 @@
 
 <div class="form">
     <div class="baslik">
-        Oyuna Fotoğraf Ekle
-        <div style="margin-left:20px;">
+        <label style="float:left;">
+            Oyuna Fotoğraf Ekle
+        </label>
+        <div style="margin-left:20px;float:left;">
             @if (ViewBag.urun != null)
             {
                 <a href="@Url.Action("Index",new {ID = ViewBag.urun.ID})">Fotoğraf Listesine</a>

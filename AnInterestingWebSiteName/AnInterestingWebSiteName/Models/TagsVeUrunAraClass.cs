@@ -7,6 +7,7 @@ using System.Web;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class TagsVeUrunAraClass
     {
         public int ID { get; set; }

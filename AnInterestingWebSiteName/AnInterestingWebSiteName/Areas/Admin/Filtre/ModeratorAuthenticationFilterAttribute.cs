@@ -20,7 +20,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Filtre
 
             Yonetici y = (Yonetici)filterContext.RequestContext.HttpContext.Session["adminSession"];
 
-
+                
             if (y.YoneticiTur_ID<1)
             {
                 filterContext.RequestContext.HttpContext.Response.Redirect("~/Admin/YetkiYetersiz/Index");

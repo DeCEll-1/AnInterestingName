@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 {
+    [ValidateInput(false)]
     [ModeratorAuthenticationFilter]
     public class FirmaController : Controller
     {
@@ -32,7 +33,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 
         [AdminAuthenticationFilter]
         [HttpPost]
-        public ActionResult Create(Firma model, HttpPostedFileBase firmaResmi, HttpPostedFileBase firmaArkaPlanResmi)
+        public ActionResult Create(Firma model, string cke_FirmaHakkinda, HttpPostedFileBase firmaResmi, HttpPostedFileBase firmaArkaPlanResmi)
         {
             if (firmaResmi == null || firmaArkaPlanResmi == null)
             {

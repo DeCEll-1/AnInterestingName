@@ -22,7 +22,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             if (id != null || db.Urunlers.Find(id) != null)
             {
                 ViewBag.urun = db.Urunlers.Find(id);
-                return View(db.OyunResimleris.ToList().Where(s => s.Oyun_ID == id));
+                return View(db.OyunResimleris.ToList().Where(s => s.Oyun_ID == id&&s.Aktifmi==true));
             }
             return RedirectToAction("Index", "Urun");
 
@@ -45,7 +45,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(OyunResimleri model, HttpPostedFileBase image,int? id)
+        public ActionResult Create(OyunResimleri model, HttpPostedFileBase image, int? id)
         {
 
             if (image == null)
@@ -59,7 +59,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             {
                 try
                 {
-                    if (id!=null)
+                    if (id != null)
                     {
                         model.Oyun_ID = (int)id;
                     }
@@ -70,7 +70,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                     model.Resim = name;
                     image.SaveAs(Server.MapPath($"~/Fotograflar/UrunFotograflari/{name}"));
 
-
+                    model.Aktifmi = true;
 
                     db.OyunResimleris.Add(model);
                     db.SaveChanges();
@@ -83,7 +83,11 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                 }
 
             }
-            ViewBag.urun = db.Urunlers.Find(model.Oyun_ID);
+
+            if (ViewBag.urun != null)
+            {
+                ViewBag.urun = db.Urunlers.Find(model.Oyun_ID);
+            }
             ViewBag.Oyun_ID = new SelectList(db.Urunlers.ToList(), "ID", "Ad");
             return View(model);
         }
@@ -91,21 +95,21 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int? id)
         {
-            if (id!=null||db.OyunResimleris.Find(id)!=null)
+            if (id != null || db.OyunResimleris.Find(id) != null)
             {
                 ViewBag.urun = db.Urunlers.Find(db.OyunResimleris.Find(id).Oyun_ID);
                 ViewBag.urunFoto = db.OyunResimleris.Find(id);
                 return View(db.OyunResimleris.Find(id));
             }
             ViewBag.message = "Hatalı Bir ID Girildi";
-            return RedirectToAction("Index","Urun");
+            return RedirectToAction("Index", "Urun");
         }
 
         [HttpPost]
         public ActionResult Edit(OyunResimleri model, HttpPostedFileBase image)
         {
 
-            if (image==null)
+            if (image == null)
             {
                 ViewBag.message = "Lütfen Bir Fotoğraf Giriniz";
                 return View();
@@ -134,7 +138,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 
 
                     db.Entry(model).State = System.Data.Entity.EntityState.Modified;
-                    db.OyunResimleris.AddOrUpdate(model) ;
+                    db.OyunResimleris.AddOrUpdate(model);
                     db.SaveChanges();
                     //çalış
                     ViewBag.message = "Fotoğraf Düzenleme Başarılı";
@@ -164,7 +168,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 
                 id = a;
 
-                return RedirectToAction("Index","OyunFotograf", new { id = id });
+                return RedirectToAction("Index", "OyunFotograf", new { id = id });
             }
             else
             {

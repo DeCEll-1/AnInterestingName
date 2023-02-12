@@ -31,7 +31,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             {
                 if (db.Yoneticis.Count(s => s.Mail == Mail && s.Sifre == Sifre) >0)
                 {
-                    if (db.Yoneticis.First(s => s.Mail == Mail && s.Sifre == Sifre).Aktif)
+                    if (db.Yoneticis.First(s => s.Mail == Mail && s.Sifre == Sifre).Aktifmi)
                     {
                         Session["adminSession"] = db.Yoneticis.First(s => s.Mail == Mail && s.Sifre == Sifre);
                         return RedirectToAction("Index","AnaMenu");

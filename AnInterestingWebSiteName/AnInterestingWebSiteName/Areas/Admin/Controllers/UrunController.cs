@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace AnInterestingWebSiteName.Areas.Admin.Controllers
 {
+    [ValidateInput(false)]
     [ModeratorAuthenticationFilter]
     public class UrunController : Controller
     {
@@ -36,9 +37,9 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         public ActionResult Create()
         {
 
-            ViewBag.Yayinci_ID = new SelectList(db.Firmas.ToList(), "ID", "Ad");
+            ViewBag.Yayinci_ID = new SelectList(db.Firmas.ToList().Where(s=>s.Aktifmi==true), "ID", "Ad");
 
-            ViewBag.Yapimci_ID = new SelectList(db.Firmas.ToList(), "ID", "Ad");
+            ViewBag.Yapimci_ID = new SelectList(db.Firmas.ToList().Where(s => s.Aktifmi == true), "ID", "Ad");
 
             return View();
         }
@@ -47,6 +48,9 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Urunler model, HttpPostedFileBase icon, HttpPostedFileBase fullImage, HttpPostedFileBase arkaPlanResmi)
         {
+            ViewBag.Yayinci_ID = new SelectList(db.Firmas.ToList().Where(s => s.Aktifmi == true), "ID", "Ad");
+
+            ViewBag.Yapimci_ID = new SelectList(db.Firmas.ToList().Where(s => s.Aktifmi == true), "ID", "Ad");
             if (icon == null || fullImage == null)
             {
                 ViewBag.message = "Lütfen Fotoğraf Giriniz";
@@ -99,9 +103,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
             }
 
 
-            ViewBag.Yayinci_ID = new SelectList(db.Firmas.ToList(), "ID", "Ad");
-
-            ViewBag.Yapimci_ID = new SelectList(db.Firmas.ToList(), "ID", "Ad");
+            
 
             return View(model);
         }

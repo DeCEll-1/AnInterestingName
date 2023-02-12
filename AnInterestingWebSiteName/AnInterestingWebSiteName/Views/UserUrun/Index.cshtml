@@ -5,8 +5,12 @@
     AnInterestingWebSiteName.Models.Kullanici k = (AnInterestingWebSiteName.Models.Kullanici)Session["userSession"];
 }
 
+<head>
+    <link href="~/Assets/Css/UrunStoreViewCss.css" rel="stylesheet" />
+</head>
 
 <div class="urunTasiyici">
+    <!-- #region amogi -->
     <div class="topDiv">
         <div class="amogi">
 
@@ -87,54 +91,55 @@
             }
 
         </div>
-        <div class="oyunBilgisi">
-            <img class="oyunBilgisiFotografi" src="~/Fotograflar/UrunFotograflari/@Model.Urun.TamResimYolu" alt="Alternate Text" />
-            <div class="oyunDetaylari">
-                <label style="word-wrap: break-word">
-                    @Model.Urun.Aciklama
-                </label>
-                <br />
-                <br />
-                <small class="oyunDetaylariItem">Yayın Tarihi: @Model.Urun.YayinTarihi.Date</small>
-                <br />
-                <small class="oyunDetaylariItem">
-                    Yayıncı:
-                    <a style="text-decoration: none; color: #7DC2A6" href="#">
-                        @Model.Urun.Yayinci.Ad
-                    </a>
-                </small>
-                <br />
-                <small class="oyunDetaylariItem">
-                    Yapımcı:
-                    <a style="text-decoration: none; color: #7DC2A6" href="#">
-                        @Model.Urun.Yapimci.Ad
-                    </a>
-                </small>
-                <br />
-                <br />
-                <br />
-                <small class="oyunDetaylariItem">Etiketler:</small>
-                <br />
-                @{
-                    int i = 0;
-                }
-
-                @if (Model.Tag != null)
-                {
-
-
-                    foreach (AnInterestingWebSiteName.Models.Tag item in Model.Tag)
-                    {
-                        <label class="oyunDetaylariItem">
-                            @if (i > 0)
-                            {
-                                <label>,</label>
-                            }
-                            @item.Ad
-                        </label>
-                        i++;
+        <div>
+            <div class="oyunBilgisi">
+                <img class="oyunBilgisiFotografi" src="~/Fotograflar/UrunFotograflari/@Model.Urun.TamResimYolu" alt="Alternate Text" />
+                <div class="oyunDetaylari">
+                    <label style="word-wrap: break-word">
+                        @Html.Raw(Model.Urun.Aciklama)
+                    </label>
+                    <br />
+                    <small class="oyunDetaylariItem">Yayın Tarihi: <small>@Model.Urun.YayinTarihi.Day</small>/<small>@Model.Urun.YayinTarihi.Month</small>/<small>@Model.Urun.YayinTarihi.Year</small></small>
+                    <br />
+                    <small class="oyunDetaylariItem">
+                        Yayıncı:
+                        <a style="text-decoration: none; color: #7DC2A6" href="@Url.Action("Index","UserFirma",new {ID=@Model.Urun.Yayinci_ID})">
+                            @Model.Urun.Yayinci.Ad
+                        </a>
+                    </small>
+                    <br />
+                    <small class="oyunDetaylariItem">
+                        Yapımcı:
+                        <a style="text-decoration: none; color: #7DC2A6" href="@Url.Action("Index","UserFirma",new {ID=@Model.Urun.Yapimci_ID})">
+                            @Model.Urun.Yapimci.Ad
+                        </a>
+                    </small>
+                    <br />
+                    <br />
+                    <br />
+                    <small class="oyunDetaylariItem">Etiketler:</small>
+                    <br />
+                    @{
+                        int i = 0;
                     }
-                }
+
+                    @if (Model.Tag != null)
+                    {
+
+
+                        foreach (AnInterestingWebSiteName.Models.Tag item in Model.Tag)
+                        {
+                            <label class="oyunDetaylariItem">
+                                @if (i > 0)
+                                {
+                                    <label>,</label>
+                                }
+                                @item.Ad
+                            </label>
+                            i++;
+                        }
+                    }
+                </div>
             </div>
         </div>
     </div>
@@ -208,7 +213,7 @@
                 }
                 else
                 {
-                    <a href="#">
+                    <a href="@Url.Action("DoPay", "Pay", new {ID=Model.Urun.ID})">
                         <div class="satinAlPara satinAlGradient">
                             Satın Al
                         </div>
@@ -226,4 +231,112 @@
 
         </div>
     </div>
+    <!-- #endregion -->
+
+
+    <div class="altPart">
+        <div class="solPart">
+            <div class="aciklama">
+                <div class="aciklama1">
+                    @Html.Raw(Model.Urun.AciklamaAlt1)
+                </div>
+
+                <div class="aciklama1">
+                    @Html.Raw(Model.Urun.AciklamaAlt2)
+                </div>
+
+                <div class="aciklama1">
+                    @Html.Raw(Model.Urun.AciklamaAlt3)
+                </div>
+            </div>
+            @if (Model.Urun.Yayinci_ID == Model.Urun.Yapimci_ID)
+            {
+                <label>Aynı Firmanın Yaptığı Oyunlar:</label>
+                <br />
+                <br />
+                <div class="ayniFirmaninOyunlari">
+                    @foreach (var item in Model.Urunler)
+                    {
+                        <a href="@Url.Action("Index", "UserUrun",new {ID = item.ID} )">
+                            <div class="ayniFirmaninOyunlariItems">
+                                <img src="~/Fotograflar/UrunFotograflari/@item.IkonYolu" alt="Alternate Text" />
+                                <div class="ayniFirmaninOyunlariItemsInfo">
+                                    <div class="ayniFirmaninOyunlariItemsInfoAd">
+                                        @item.Ad
+                                    </div>
+                                    <br />
+                                    <div class="ayniFirmaninOyunlariItemsInfoFiyat">
+                                        @if (item.Fiyat == 0)
+                                        {
+                                            <label style="color: #BEEE11;float:right;">Bedava</label>
+                                            <br />
+                                        }
+                                        else if (item.IndirimliFiyat == 0)
+                                        {
+                                            <label style="color:gray;">@item.Fiyat</label>
+                                            <label style="color: #BEEE11;float:right;">Bedava</label>
+                                        }
+                                        else if (item.Indirim > 0)
+                                        {
+                                            <label style="color: #BEEE11; background-color: #4C6B22; padding: 2px 5px ">-@item.Indirim%</label>
+                                            <label style="color:gray;">@item.Fiyat</label>
+                                            <label style="color: #BEEE11;float:right;">@item.IndirimliFiyat<label>&nbsp;TL</label></label>
+                                        }
+                                        else
+                                        {
+                                            <label style="float: right; color: #8EB7ED;">@item.Fiyat</label>
+                                            <br />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+
+                    }
+                </div>
+            }
+
+        </div>
+        <div class="sagPart">
+            @if (Model.Urun.Yayinci_ID == Model.Urun.Yapimci_ID)
+            {
+                <div class="yayinciBilgileri">
+                    Yayıncı Ve Yapımcı Hakkında:
+                    <br />
+                    @Html.Raw(Model.Urun.Yayinci.Ad)
+                    <br />
+                    <br />
+                    @Html.Raw(Model.Urun.Yayinci.FirmaHakkinda)
+                    <img style="width:140px;padding-left:80px;padding-top:20px;" src="~/Fotograflar/FirmaFotograflari/@Model.Urun.Yayinci.FirmaResmi" alt="Yayıncı Bilgileri" />
+                </div>
+            }
+            else
+            {
+
+                <div class="yayinciBilgileri">
+                    Yayıncı Hakkında:
+                    <br />
+                    @Html.Raw(Model.Urun.Yayinci.Ad)
+                    <br />
+                    <br />
+                    @Html.Raw(Model.Urun.Yayinci.FirmaHakkinda)
+                    <img style="width:140px;padding-left:80px;padding-top:20px;" src="~/Fotograflar/FirmaFotograflari/@Model.Urun.Yayinci.FirmaResmi" alt="Yayıncı Bilgileri" />
+                </div>
+                <div class="yapimciBilgileri">
+                    Yapımcı Hakkında:
+                    <br />
+                    @Html.Raw(Model.Urun.Yapimci.Ad)
+                    <br />
+                    <br />
+                    @Html.Raw(Model.Urun.Yapimci.FirmaHakkinda)
+                    <img style="width:140px;padding-left:80px;padding-top:20px;" src="~/Fotograflar/FirmaFotograflari/@Model.Urun.Yapimci.FirmaResmi" alt="Yayıncı Bilgileri" />
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+
+
 </div>

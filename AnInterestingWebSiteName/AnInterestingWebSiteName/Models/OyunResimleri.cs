@@ -7,6 +7,7 @@ using System.Web;
 
 namespace AnInterestingWebSiteName.Models
 {
+    [Serializable]
     public class OyunResimleri
     {
         public int ID { get; set; }
@@ -19,5 +20,7 @@ namespace AnInterestingWebSiteName.Models
 
         [Display(Name ="Resim")]
         public string Resim { get; set; }
+
+        public bool Aktifmi { get; set; }
     }
 }

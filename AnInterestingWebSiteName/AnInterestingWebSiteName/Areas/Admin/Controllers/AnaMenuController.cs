@@ -125,7 +125,7 @@ namespace AnInterestingWebSiteName.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Login");
             }
             Yonetici model = (Yonetici)Session["adminSession"];
-
+            model.YoneticiTur = db.YoneticiTurs.Find(model.YoneticiTur_ID);
 
             ViewBag.YoneticiTur_ID = new SelectList(db.YoneticiTurs.ToList(), "ID", "Ad");
 
